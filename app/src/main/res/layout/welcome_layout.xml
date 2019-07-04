@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <it.apperol.group.worlddatabank.myviews.MyTextView
+        android:id="@+id/myTvWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="25sp"
+        android:autoSizeTextType="uniform"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <it.apperol.group.worlddatabank.myviews.MyTextView
+        android:id="@+id/myTvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:autoSizeTextType="uniform"
+        android:textStyle="bold|italic"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/app_title"
+        android:textAlignment="center"
+        android:textSize="29sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTvWelcome" />
+
+    <it.apperol.group.worlddatabank.myviews.MyTextView
+        android:id="@+id/myTvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:autoSizeTextType="uniform"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/app_description"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTvTitle" />
+
+
+    <it.apperol.group.worlddatabank.myviews.MyTextView
+        android:id="@+id/myTvChoose"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:autoSizeTextType="uniform"
+        android:text="@string/please_choose_how_to_proceed"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTvDescription" />
+
+    <it.apperol.group.worlddatabank.myviews.MyTextView
+        android:id="@+id/myTvChooseInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:paddingHorizontal="3dp"
+        android:text="@string/choose_info"
+        android:textAlignment="textStart"
+        android:textStyle="italic"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTvChoose"
+        android:maxLines="1"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbCoArIn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Country --> Argument --> Indicator"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTvChooseInfo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbArInCo"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Argument --> Indicator --> Country"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mbCoArIn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+    <string-array name="languages_entries">
+        <item>@string/english</item>
+        <item>@string/italian</item>
+    </string-array>
+
+    <string-array name="languages_values">
+        <item>english</item>
+        <item>italian</item>
+    </string-array>
+
+    <string-array name="delete_entries">
+        <item>@string/one_day</item>
+        <item>@string/three_days</item>
+        <item>@string/seven_days</item>
+        <item>@string/one_month</item>
+        <item>@string/never</item>
+    </string-array>
+
+    <string-array name="delete_values">
+        <item>1d</item>
+        <item>3d</item>
+        <item>7d</item>
+        <item>1m</item>
+        <item>0</item>
+    </string-array>
+
+</resources>

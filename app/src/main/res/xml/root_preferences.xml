@@ -1,0 +1,65 @@
+<!--
+  ~ Copyright 2018 The app Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory app:title="@string/language">
+
+        <ListPreference
+            app:key="language"
+            app:defaultValue="english"
+            app:entries="@array/languages_entries"
+            app:entryValues="@array/languages_values"
+            app:title="@string/def_lang"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/dark_mode">
+
+        <!--<SwitchPreferenceCompat
+            app:key="dark_mode"
+            app:summaryOff="The app is in 'Light mode'"
+            app:summaryOn="The app is in 'Dark mode'"
+            app:title="Enable Dark Mode" />-->
+
+        <it.apperol.group.worlddatabank.DayNightSwitchPreference
+            android:key="day_night"
+            android:widgetLayout="@layout/daynight_switch"
+            android:title="Enable Dark Mode"
+            android:summary="The app is in 'Light mode'" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/storage">
+
+        <ListPreference
+        app:key="storage"
+        app:defaultValue="0"
+        app:entries="@array/delete_entries"
+        app:entryValues="@array/delete_values"
+        app:title="@string/del_after"
+        app:useSimpleSummaryProvider="true" />
+
+        <Preference android:title="@string/del_stat"
+            android:key="del_now"
+            android:summary="@string/del_stat_now"/>
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WorldDataBank</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="app_description">Con questa applicazione puoi navigare tra vari dati/statistiche e visualizzarne, graficamente, i cambiamenti nel corso degli anni</string>
+    <string name="app_title">World Bank Open Data</string>
+    <string name="nav_header_subtitle">La prima app al mondo che ti mostra statistiche su qualsiasi cosa</string>
+    <string name="nav_header_title">World Bank Open Data</string>
+    <string name="navigation_drawer_close">Chiudi finestra di navigazione</string>
+    <string name="navigation_drawer_open">Apri finestra di navigazione</string>
+    <string name="title_activity_plot">PlotActivity</string>
+    <string name="title_activity_settings">Impostazioni</string>
+    <string name="welcome">Benvenuto in</string>
+    <string name="nav_header_desc">Intestazione di navigazione</string>
+    <string name="choose_info"><![CDATA[(clicca qui per info)\nScegliendo \'Paese —> Argomento —> Indicatore\', puoi richiedere un indicatore specifico partendo dal paese di interesse\n(es. Italy[Italia] —> Economy[Economia] —> GDP[PIL])\n\nScegliendo \'Argomento —> Indicatore —> Paese\', puoi richiedere uno specifico indicatore partendo dall\'argomento di interesse e finendo con il paese\n(es. Economy[Economia] —> GDP[PIL] —> Italy[Italia])]]></string>
+    <string name="english">Inglese</string>
+    <string name="italian">Italiano</string>
+    <string name="cancel">Annulla</string>
+    <string name="dark_mode">Tema chiaro/scuro</string>
+    <string name="def_lang">Lingua predefinita</string>
+    <string name="del_after">Cancella tutte le statistiche salvate dopo</string>
+    <string name="del_stat">Cancella ora tutte le statistiche salvate</string>
+    <string name="del_stat_now">Cliccando qui cancellerai tutte le statistiche che hai scaricato fino ad ora</string>
+    <string name="language">Lingua</string>
+    <string name="never">Mai</string>
+    <string name="one_day">1 giorno</string>
+    <string name="one_month">1 mese</string>
+    <string name="save_graph">Salva il grafico nella galleria</string>
+    <string name="save_share">Cosa desideri fare?</string>
+    <string name="seven_days">7 giorni</string>
+    <string name="share_graph">Condividi il grafico con Whatsapp</string>
+    <string name="storage">Memoria</string>
+    <string name="three_days">3 giorni</string>
+    <string name="title_activity_main">World Bank Open Data</string>
+    <string name="choose_country">Scegli un paese</string>
+    <string name="choose_indicator">Scegli un indicatore</string>
+    <string name="choose_topic">Scegli un argomento</string>
+</resources>
