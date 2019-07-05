@@ -40,6 +40,8 @@ import it.apperol.group.worlddatabank.myviews.MyTextView;
 public class OfflineAdapter extends
         RecyclerView.Adapter<OfflineAdapter.ViewHolder> {
 
+    public static String currentFileName = "";
+
     private List<OfflineDataItem> offlineDataItemList;
     private  Context context;
     public static JSONArray ja;
@@ -72,6 +74,7 @@ public class OfflineAdapter extends
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                currentFileName = data.getFileName().substring(0, data.getFileName().length()-4);
                 Intent i = new Intent(MainActivity.mainActivityContext, PlotActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 MainActivity.mainActivityContext.startActivity(i);

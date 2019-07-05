@@ -7,7 +7,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_plot">PlotActivity</string>
+    <string name="title_activity_plot">Chart</string>
     <string name="welcome">Welcome to</string>
     <string name="app_title">World Bank Open Data</string>
     <string name="app_description">This app allows you to browse through various data/statistics and view, graphically, the changes over the years</string>
@@ -15,10 +15,8 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_slideshow">Offline data</string>
+    <string name="menu_tools">Settings</string>
 
     <!-- Preferences -->
     <string name="choose_info"><![CDATA[(click here for info)\nBy choosing \'Country —> Argument —> Indicator\', you can request a specific indicator starting from the country of interest\n(e.g. Italy —> Economy —> GDP)\n\nBy choosing \'Argument —> Indicator —> Country\', you can request a specific indicator starting from the argument of interest and ending with the country\n(e.g. Economy -> GDP -> Italy)]]></string>

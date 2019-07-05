@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
@@ -32,13 +33,19 @@ public class DayNightSwitchPreference extends Preference {
     public void onBindViewHolder(final PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
         DayNightSwitch dayNightSwitch = holder.itemView.findViewById(R.id.day_night_switch);
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            dayNightSwitch.setIsNight(true);
+        } else {
+            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            dayNightSwitch.setIsNight(false);
+        }
 
-        dayNightSwitch.setListener(new DayNightSwitchListener() {
+        /*dayNightSwitch.setListener(new DayNightSwitchListener() {
             @Override
             public void onSwitch(boolean b) {
                 Toast.makeText(holder.itemView.getContext(), "CLICKED!", Toast.LENGTH_SHORT).show();
-
             }
-        });
+        });*/
     }
 }

@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.Objects;
 
 import it.apperol.group.worlddatabank.MainActivity;
+import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.WelcomeFragment;
 import it.apperol.group.worlddatabank.itemlist.MyIndicatorItem;
 import it.apperol.group.worlddatabank.myactivities.CountryActivity;
@@ -70,8 +71,8 @@ public class FetchData extends AsyncTask<Void,Void,Void> {
         super.onPostExecute(aVoid);
         if(!fetchDone) {
             ProgressActivity.actProg.finish();
-            noDataFoundDialog.setTitle("AlertDialog di MrWebMaster");
-            noDataFoundDialog.setMessage("Questa è la mia prima AlertDialog");
+            noDataFoundDialog.setTitle(MainActivity.mainActivityContext.getResources().getString(R.string.error));
+            noDataFoundDialog.setMessage(MainActivity.mainActivityContext.getResources().getString(R.string.indicator_not_available));
             noDataFoundDialog.setCancelable(false);
             noDataFoundDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override

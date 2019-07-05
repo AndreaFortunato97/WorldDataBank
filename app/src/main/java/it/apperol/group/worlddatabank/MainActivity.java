@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -71,6 +72,20 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
+            Toast.makeText(this, "NOTTE", Toast.LENGTH_LONG).show();
+        } else {
+            setTheme(R.style.AppTheme);
+            Toast.makeText(this, "GIORNO", Toast.LENGTH_LONG).show();
+        }
+
+        /*// TODO: PREFERENCE (LINGUA)
+        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean x = s.getBoolean("lang", false);
+        Toast.makeText(this, x.toString(), Toast.LENGTH_SHORT).show();*/
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,11 +101,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-        // TODO: PREFERENCE (LINGUA)
-        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean x = s.getBoolean("sync", false);
-        Toast.makeText(this, x.toString(), Toast.LENGTH_SHORT).show();
 
         navigationView.getMenu().getItem(0).setChecked(true);
 

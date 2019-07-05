@@ -2,6 +2,7 @@ package it.apperol.group.worlddatabank;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.ListPreference;
@@ -52,51 +54,33 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
-        private ListPreference sync;
+        private ListPreference lang;
         private Preference day_night;
         private DayNightSwitch dayNightSwitch;
 
         @Override
         public boolean onPreferenceTreeClick(Preference preference) {
+            dayNightSwitch = getActivity().findViewById(R.id.day_night_switch);
+            if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                dayNightSwitch.setIsNight(true);
+            } else {
+                //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                dayNightSwitch.setIsNight(false);
+            }
 
             if(preference.getKey().equals("day_night")){
-                // user clicked "day_night" switch
-                // take appropriate actions
                 // return "true" to indicate you handled the click
-                dayNightSwitch = getActivity().findViewById(R.id.day_night_switch);
-                //dayNightSwitch.setIsNight(!dayNightSwitch.isNight());
-                if(dayNightSwitch.isNight()){
-                        Animation animation = new Animation(){
-                            @Override
-                            protected void applyTransformation(float interpolatedTime, Transformation t) {
-                                dayNightSwitch.setIsNight(false);
-                            }
 
-                            @Override
-                            public boolean willChangeBounds() {
-                                return true;
-                            }
-                        };
+                if(dayNightSwitch.isNight()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    restartApp();
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    restartApp();
+                }
 
-                        animation.setDuration(500);
-                        dayNightSwitch.startAnimation(animation);
-                    } else {
-                        Animation animation = new Animation(){
-                            @Override
-                            protected void applyTransformation(float interpolatedTime, Transformation t) {
-                                dayNightSwitch.setIsNight(true);
-                            }
-
-                            @Override
-                            public boolean willChangeBounds() {
-                                return true;
-                            }
-                        };
-
-                        animation.setDuration(500);
-                        dayNightSwitch.startAnimation(animation);
-                    }
-
+                dayNightSwitch.setIsNight(!dayNightSwitch.isNight());
 
                 Toast.makeText(getActivity(), "Night: " + dayNightSwitch.isNight(), Toast.LENGTH_SHORT).show();
 
@@ -105,16 +89,10 @@ public class SettingsActivity extends AppCompatActivity {
             return false;
         }
 
-        private void deleteDataFiles() {
-            String path =  getActivity().getApplicationContext().getFilesDir().toString();
-            File directory = new File(path);
-            File[] files = directory.listFiles();
-            if(files.length > 0) {
-                Log.i("Files", "Size: " + files.length);
-                for (int i = 0; i < files.length; i++) {
-                    files[i].delete();
-                }
-            }
+        private void restartApp() {
+            Intent i = new Intent(MainActivity.mainActivityContext, MainActivity.class);
+            startActivity(i);
+            getActivity().finish();
         }
 
         @Override
@@ -122,10 +100,10 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             //addPreferencesFromResource(R.xml.root_preferences);
 
-            sync = findPreference("language");
+            lang = findPreference("language");
             day_night = findPreference("day_night");
 
-            sync.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            lang.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Toast.makeText(getActivity(), "Nuova lingua: " + newValue.toString(), Toast.LENGTH_SHORT).show();

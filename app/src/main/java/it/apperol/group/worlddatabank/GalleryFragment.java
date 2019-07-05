@@ -113,19 +113,22 @@ public class GalleryFragment extends Fragment {
     {
         ArrayList<File> b = new ArrayList<>();
         File[] files = exstarnalStorageDirectory.listFiles();
-        for (int i =0; i<files.length;i++)
-        {
-            if (files[i].isDirectory() )
-            {
-                b.addAll(imageReader(files[i]));
-            }
-            else
-            {
-                if (files[i].getName().endsWith(".png"))
-                {
-                    b.add(files[i]);
+        if(files != null) {
+            getActivity().findViewById(R.id.image_grid).setVisibility(View.VISIBLE);
+            getActivity().findViewById(R.id.no_images).setVisibility(View.INVISIBLE);
+
+            for (int i = 0; i < files.length; i++) {
+                if (files[i].isDirectory()) {
+                    b.addAll(imageReader(files[i]));
+                } else {
+                    if (files[i].getName().endsWith(".png")) {
+                        b.add(files[i]);
+                    }
                 }
             }
+        } else {
+            getActivity().findViewById(R.id.image_grid).setVisibility(View.INVISIBLE);
+            getActivity().findViewById(R.id.no_images).setVisibility(View.VISIBLE);
         }
 
         return b;

@@ -43,6 +43,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -50,6 +51,7 @@ import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 import it.apperol.group.worlddatabank.MainActivity;
+import it.apperol.group.worlddatabank.OfflineFragment;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.SaveShareDialog;
 import it.apperol.group.worlddatabank.WelcomeFragment;
@@ -64,6 +66,8 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class PlotActivity extends AppCompatActivity {
+
+    private String[] currentFileName;
 
     public static Context plotActivityContext;
 
@@ -100,15 +104,20 @@ public class PlotActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if(WelcomeFragment.count == 2) {
+            fab.setVisibility(View.INVISIBLE);
+            currentFileName = OfflineAdapter.currentFileName.split("-");
+        } else {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                askPermissions();
+                    askPermissions();
 
-                saveShareDialog.show(getSupportFragmentManager(),"mySaveShareDialog");
-            }
-        });
+                    saveShareDialog.show(getSupportFragmentManager(), "mySaveShareDialog");
+                }
+            });
+        }
 
         mpLineChart =(LineChart) findViewById(R.id.line_chart);
 
@@ -294,7 +303,12 @@ public class PlotActivity extends AppCompatActivity {
             alert.show();
             finish();
         }
-        LineDataSet lineDataSet1 = new LineDataSet(dataVals, "Indicator: "+ MyIndicatorAdapter.indicatorName);  //Grafico a linee 1
+        LineDataSet lineDataSet1;
+        if(WelcomeFragment.count == 2) {
+            lineDataSet1 = new LineDataSet(dataVals, "Indicator: " + currentFileName[2]);  //Grafico a linee 1
+        } else {
+            lineDataSet1 = new LineDataSet(dataVals, "Indicator: " + MyIndicatorAdapter.indicatorName);  //Grafico a linee 1
+        }
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();    // insieme di tutti i dati
         dataSets.add(lineDataSet1);         //aggiungo dati 1
 
@@ -331,7 +345,11 @@ public class PlotActivity extends AppCompatActivity {
         //legend.setCustom(legendEntries);     //Customizzare la legenda con legendEntries
 
         Description description = new Description();       //Descrizione da aggiungere sul grafico
-        description.setText(MyTopicAdapter.topicName + " of country " + MyCountryAdapter.countryName);
+        if(WelcomeFragment.count == 2) {
+            description.setText(currentFileName[1] + " of country " + currentFileName[0]);
+        } else {
+            description.setText(MyTopicAdapter.topicName + " of country " + MyCountryAdapter.countryName);
+        }
         description.setTextColor(Color.RED);
         description.setTextSize(10);
         mpLineChart.setDescription(description);             //rende visibile la descrizione sul grafico
