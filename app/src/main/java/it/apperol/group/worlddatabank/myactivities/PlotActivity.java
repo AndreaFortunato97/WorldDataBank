@@ -56,6 +56,7 @@ import it.apperol.group.worlddatabank.WelcomeFragment;
 import it.apperol.group.worlddatabank.myadapters.MyCountryAdapter;
 import it.apperol.group.worlddatabank.myadapters.MyIndicatorAdapter;
 import it.apperol.group.worlddatabank.myadapters.MyTopicAdapter;
+import it.apperol.group.worlddatabank.myadapters.OfflineAdapter;
 import it.apperol.group.worlddatabank.myobjects.PlotObj;
 import it.apperol.group.worlddatabank.mythreads.FetchData;
 
@@ -90,6 +91,9 @@ public class PlotActivity extends AppCompatActivity {
             ja = MyIndicatorAdapter.ja;
         else if(WelcomeFragment.count == 1)
             ja = MyCountryAdapter.ja;
+        else if(WelcomeFragment.count == 2){
+            ja = OfflineAdapter.ja;
+        }
 
         setContentView(R.layout.activity_plot);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

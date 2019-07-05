@@ -1,6 +1,7 @@
 package it.apperol.group.worlddatabank.myadapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
+
+import it.apperol.group.worlddatabank.MainActivity;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.itemlist.OfflineDataItem;
+import it.apperol.group.worlddatabank.myactivities.PlotActivity;
 import it.apperol.group.worlddatabank.myviews.MyTextView;
+
 
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
@@ -26,6 +38,7 @@ public class OfflineAdapter extends
 
     private List<OfflineDataItem> offlineDataItemList;
     private  Context context;
+    public static JSONArray ja;
 
     public OfflineAdapter(List<OfflineDataItem> offlineDataItemList,Context context){
         this.offlineDataItemList = offlineDataItemList;
@@ -49,7 +62,15 @@ public class OfflineAdapter extends
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, data.getFileName(), Toast.LENGTH_SHORT).show();
-
+                String dataString = readData(data);
+                try {
+                    ja = new JSONArray(dataString);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Intent i = new Intent(MainActivity.mainActivityContext, PlotActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                MainActivity.mainActivityContext.startActivity(i);
             }
         });
     }
@@ -79,5 +100,36 @@ public class OfflineAdapter extends
             tvOfflineIndicator = itemView.findViewById(R.id.myTvOfflineIndicator);
             llOffline = itemView.findViewById(R.id.llOffline);
         }
+    }
+
+    private String readData(OfflineDataItem data) {
+        File file = new File(MainActivity.mainActivityContext.getFilesDir(),data.getFileName());
+        int len = (int) file.length();
+        String contents;
+        byte[] bytes = new byte[len];
+
+        FileInputStream in = null;
+        try {
+            in = new FileInputStream(file);
+            in.read(bytes);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally{
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+
+        contents = new String(bytes);
+        return contents;
     }
 }

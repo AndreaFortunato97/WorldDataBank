@@ -140,36 +140,7 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
         }
     }
 
-    private String readData() {
-        File file = new File(Objects.requireNonNull(getActivity()).getApplicationContext().getFilesDir(),MyCountryAdapter.countryName + "-" + MyTopicAdapter.topicName + "-" + MyIndicatorAdapter.indicatorName + ".txt");
-        int len = (int) file.length();
-        String contents;
-        byte[] bytes = new byte[len];
 
-        FileInputStream in = null;
-        try {
-            in = new FileInputStream(file);
-            in.read(bytes);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally{
-            try {
-                in.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }
-
-        contents = new String(bytes);
-        return contents;
-    }
 
     private void createFolder(String folderName) {
         File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/" + folderName + "/");

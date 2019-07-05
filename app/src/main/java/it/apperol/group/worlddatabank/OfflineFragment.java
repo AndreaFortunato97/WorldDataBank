@@ -40,6 +40,8 @@ public class OfflineFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
         String path =  getActivity().getApplicationContext().getFilesDir().toString();
 
         Log.i("Files", "Path: " + path);

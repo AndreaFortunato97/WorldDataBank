@@ -170,6 +170,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_offline) {
+            WelcomeFragment.count = 2;
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new OfflineFragment()).commit();
         } else if (id == R.id.nav_settings) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsActivity.SettingsFragment()).commit();
