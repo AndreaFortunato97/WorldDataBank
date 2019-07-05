@@ -96,16 +96,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private Boolean isConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            return true;
-        }
-        else
-            return false;
-    }
-
     private void openInfoDialog() {
         InfoDialog infoDialog = new InfoDialog();
         infoDialog.show(getSupportFragmentManager(), "InfoDialog");
@@ -154,7 +144,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home && !(navigationView.getMenu().getItem(0).isChecked())) {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).replace(R.id.content_frame, new WelcomeFragment()).commit();
         } else if (id == R.id.nav_gallery && !(navigationView.getMenu().getItem(1).isChecked())) {
-
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).replace(R.id.content_frame, new GalleryFragment()).commit();
         } else if (id == R.id.nav_offline && !(navigationView.getMenu().getItem(2).isChecked())) {
             WelcomeFragment.count = 2;
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).replace(R.id.content_frame, new OfflineFragment()).commit();

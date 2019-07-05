@@ -10,7 +10,8 @@
     <androidx.cardview.widget.CardView
         android:layout_margin="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp">
 
         <LinearLayout
             android:id="@+id/llOffline"
@@ -19,15 +20,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <it.apperol.group.worlddatabank.myviews.MyTextView
-                android:id="@+id/myTvOfflineCountry"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal">
+
+                <it.apperol.group.worlddatabank.myviews.MyTextView
+                    android:id="@+id/myTvOfflineCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivDel"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/trash_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <it.apperol.group.worlddatabank.myviews.MyTextView
                 android:id="@+id/myTvOfflineIndicator"

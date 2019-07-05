@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,10 +28,14 @@ import it.apperol.group.worlddatabank.myviews.MyRecyclerView;
 import it.apperol.group.worlddatabank.myviews.MyTextView;
 
 public class OfflineFragment extends Fragment {
+    public static MyRecyclerView rvOffline;
+    public static FragmentManager fmOffline;
+    public static Fragment offlineFragment;
+
     private View myView;
     private MyTextView myTvNoData;
 
-    private List<OfflineDataItem> itemList = new ArrayList<>();
+    public static List<OfflineDataItem> itemList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -41,6 +47,10 @@ public class OfflineFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        fmOffline = getFragmentManager();
+        offlineFragment = this;
+        itemList = new ArrayList<>();
 
         String path =  getActivity().getApplicationContext().getFilesDir().toString();
         Log.i("Files", "Path: " + path);
@@ -55,7 +65,7 @@ public class OfflineFragment extends Fragment {
             }
 
 
-            MyRecyclerView rvOffline = (MyRecyclerView) Objects.requireNonNull(getActivity()).findViewById(R.id.rvOffline);
+            rvOffline = (MyRecyclerView) Objects.requireNonNull(getActivity()).findViewById(R.id.rvOffline);
             rvOffline.setVisibility(View.VISIBLE);
             rvOffline.setHasFixedSize(true);
 

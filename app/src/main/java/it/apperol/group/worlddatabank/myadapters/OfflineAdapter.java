@@ -2,15 +2,18 @@ package it.apperol.group.worlddatabank.myadapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
@@ -24,6 +27,7 @@ import java.util.List;
 import java.util.Objects;
 
 import it.apperol.group.worlddatabank.MainActivity;
+import it.apperol.group.worlddatabank.OfflineFragment;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.itemlist.OfflineDataItem;
 import it.apperol.group.worlddatabank.myactivities.PlotActivity;
@@ -54,7 +58,7 @@ public class OfflineAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final OfflineDataItem data = offlineDataItemList.get(position);
 
         holder.tvOfflineCountry.setText(data.getFileName());
@@ -73,6 +77,15 @@ public class OfflineAdapter extends
                 MainActivity.mainActivityContext.startActivity(i);
             }
         });
+        holder.ivDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File fileToDelete = new File(MainActivity.mainActivityContext.getFilesDir(), data.getFileName());
+                fileToDelete.delete();
+                OfflineFragment.itemList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -86,8 +99,9 @@ public class OfflineAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public MyTextView tvOfflineCountry;
-        public  MyTextView tvOfflineIndicator;
+        public MyTextView tvOfflineIndicator;
         public LinearLayout llOffline;
+        public ImageView ivDel;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -99,6 +113,7 @@ public class OfflineAdapter extends
             tvOfflineCountry = itemView.findViewById(R.id.myTvOfflineCountry);
             tvOfflineIndicator = itemView.findViewById(R.id.myTvOfflineIndicator);
             llOffline = itemView.findViewById(R.id.llOffline);
+            ivDel = itemView.findViewById(R.id.ivDel);
         }
     }
 
