@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.util.Log;
@@ -16,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 
 import it.apperol.group.worlddatabank.MainActivity;
 import it.apperol.group.worlddatabank.WelcomeFragment;
@@ -105,11 +108,25 @@ public class FetchData extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        if(!isConnected()) {
+            MainActivity.mainActivityContext.startActivity(new Intent(MainActivity.mainActivityContext, MainActivity.class));
+            cancel(true);
+        }
         noDataFoundDialog = new AlertDialog.Builder(mContext);
 
         Intent progressIntent = new Intent(MainActivity.mainActivityContext, ProgressActivity.class);
         progressIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         MainActivity.mainActivityContext.startActivity(progressIntent);
+    }
+
+    private Boolean isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) MainActivity.mainActivityContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            return true;
+        }
+        else
+            return false;
     }
 
     private Boolean fetch(String urlString) {

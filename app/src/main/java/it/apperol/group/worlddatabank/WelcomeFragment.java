@@ -34,8 +34,8 @@ import it.apperol.group.worlddatabank.myviews.MyTextView;
 public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
     private View myView;
-    private MyTextView myTvTitle, myTvChooseInfo;
-    private MaterialButton mbCoArIn, mbArInCo;
+    private MyTextView myTvTitle, myTvChoose, myTvChooseInfo, myTvOffline;
+    private MaterialButton mbCoArIn, mbArInCo, mbRefreshConnection;
     private boolean isTextViewClicked = false;
     public static int count;
 
@@ -50,10 +50,14 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        mbRefreshConnection = Objects.requireNonNull(getActivity()).findViewById(R.id.mbRefreshConnection);
         myTvTitle = Objects.requireNonNull(getActivity()).findViewById(R.id.myTvTitle);
         myTvChooseInfo = Objects.requireNonNull(getActivity()).findViewById(R.id.myTvChooseInfo);
         mbCoArIn = Objects.requireNonNull(getActivity()).findViewById(R.id.mbCoArIn);
         mbArInCo = Objects.requireNonNull(getActivity()).findViewById(R.id.mbArInCo);
+        myTvOffline = Objects.requireNonNull(getActivity()).findViewById(R.id.myTvOffline);
+        myTvChoose = Objects.requireNonNull(getActivity()).findViewById(R.id.myTvChoose);
+
 
         myTvTitle.setText(String.format("%s App", getResources().getString(R.string.app_title)));
 
@@ -72,14 +76,20 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         underlineChoose();
 
         myTvChooseInfo.setOnClickListener(this);
+        mbRefreshConnection.setOnClickListener(this);
 
         if(!isConnected()) {
+            myTvChoose.setVisibility(View.INVISIBLE);
+            myTvChooseInfo.setVisibility(View.INVISIBLE);
             mbCoArIn.setEnabled(false);
             mbArInCo.setEnabled(false);
+            myTvOffline.setVisibility(View.VISIBLE);
+            mbRefreshConnection.setVisibility(View.VISIBLE);
         }
 
         mbCoArIn.setOnClickListener(this);
         mbArInCo.setOnClickListener(this);
+        mbRefreshConnection.setOnClickListener(this);
     }
 
     private void underlineChoose() {
@@ -100,17 +110,29 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.mbRefreshConnection:
+                if(isConnected()) {
+                    getActivity().recreate();
+                }
+                break;
             case R.id.mbCoArIn:
-                Toast.makeText(getActivity(),"mbCoArIn", Toast.LENGTH_SHORT).show();
-                count = 0;
-                Intent countryIntent = new Intent(getActivity(), CountryActivity.class);  //TODO: EVIDENCE.
-                startActivity(countryIntent);
+                if(isConnected()) {
+                    count = 0;
+                    Intent countryIntent = new Intent(getActivity(), CountryActivity.class);  //TODO: EVIDENCE.
+                    startActivity(countryIntent);
+                } else {
+                    getActivity().recreate();
+                }
+
                 break;
             case R.id.mbArInCo:
-                Toast.makeText(getActivity(),"mbArInCo", Toast.LENGTH_SHORT).show();
-                count = 1;
-                Intent topicIntent = new Intent(getActivity(), TopicActivity.class);  //TODO: EVIDENCE.
-                startActivity(topicIntent);
+                if(isConnected()) {
+                    count = 1;
+                    Intent topicIntent = new Intent(getActivity(), TopicActivity.class);  //TODO: EVIDENCE.
+                    startActivity(topicIntent);
+                } else {
+                    getActivity().recreate();
+                }
                 break;
             case R.id.myTvChooseInfo:
 
