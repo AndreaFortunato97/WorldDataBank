@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor">@color/backgroundColor</item>
         <item name="cardbackground">#ffffff</item>
+        <item name="android:windowAnimationStyle">@style/WindowsAnimationTransition</item>
     </style>
 
     <style name="AppThemeDark" parent="Theme.MaterialComponents.Light.DarkActionBar">
@@ -17,7 +18,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor">#303030</item>
         <item name="cardbackground">#424242</item>
-
+        <item name="android:windowAnimationStyle">@style/WindowsAnimationTransition</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -28,5 +29,10 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="WindowsAnimationTransition">
+        <item name="android:windowEnterAnimation" >@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation" >@android:anim/fade_out</item>
+    </style>
 
 </resources>
