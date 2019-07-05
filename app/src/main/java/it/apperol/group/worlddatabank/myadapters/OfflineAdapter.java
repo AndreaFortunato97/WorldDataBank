@@ -49,6 +49,7 @@ public class OfflineAdapter extends
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, data.getFileName(), Toast.LENGTH_SHORT).show();
+
             }
         });
     }
