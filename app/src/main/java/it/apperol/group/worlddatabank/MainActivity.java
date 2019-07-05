@@ -57,8 +57,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static Context mainActivityContext;
-
-    private String currentFragment;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,30 +69,18 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new WelcomeFragment()).commit();
 
-        currentFragment = "WelcomeFragment";
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                /*final Snackbar snackbar = Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG);
-
-                snackbar.setAction("Action", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        snackbar.dismiss();
-                    }
-                }).show();*/
-
                 openInfoDialog();
             }
         });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -159,25 +146,20 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new WelcomeFragment()).commit();
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home && !(navigationView.getMenu().getItem(0).isChecked())) {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).replace(R.id.content_frame, new WelcomeFragment()).commit();
+        } else if (id == R.id.nav_gallery && !(navigationView.getMenu().getItem(1).isChecked())) {
 
-        } else if (id == R.id.nav_offline) {
+        } else if (id == R.id.nav_offline && !(navigationView.getMenu().getItem(2).isChecked())) {
             WelcomeFragment.count = 2;
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new OfflineFragment()).commit();
-        } else if (id == R.id.nav_settings) {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).replace(R.id.content_frame, new OfflineFragment()).commit();
+        } else if (id == R.id.nav_settings && !(navigationView.getMenu().getItem(3).isChecked())) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsActivity.SettingsFragment()).commit();
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

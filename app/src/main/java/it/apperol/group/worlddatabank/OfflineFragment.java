@@ -23,9 +23,11 @@ import java.util.zip.Inflater;
 import it.apperol.group.worlddatabank.itemlist.OfflineDataItem;
 import it.apperol.group.worlddatabank.myadapters.OfflineAdapter;
 import it.apperol.group.worlddatabank.myviews.MyRecyclerView;
+import it.apperol.group.worlddatabank.myviews.MyTextView;
 
 public class OfflineFragment extends Fragment {
     private View myView;
+    private MyTextView myTvNoData;
 
     private List<OfflineDataItem> itemList = new ArrayList<>();
 
@@ -40,27 +42,31 @@ public class OfflineFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         String path =  getActivity().getApplicationContext().getFilesDir().toString();
-
         Log.i("Files", "Path: " + path);
         File directory = new File(path);
         File[] files = directory.listFiles();
-        Log.i("Files", "Size: "+ files.length);
-        for (int i = 0; i < files.length; i++)
-        {
-            OfflineDataItem item = new OfflineDataItem(files[i].getName());
-            itemList.add(item);
-            Log.i("Files", "FileName:" + itemList.get(i).getFileName());
+        if(files.length > 0) {
+            Log.i("Files", "Size: " + files.length);
+            for (int i = 0; i < files.length; i++) {
+                OfflineDataItem item = new OfflineDataItem(files[i].getName());
+                itemList.add(item);
+                Log.i("Files", "FileName:" + itemList.get(i).getFileName());
+            }
+
+
+            MyRecyclerView rvOffline = (MyRecyclerView) Objects.requireNonNull(getActivity()).findViewById(R.id.rvOffline);
+            rvOffline.setVisibility(View.VISIBLE);
+            rvOffline.setHasFixedSize(true);
+
+            OfflineAdapter offlineAdapter = new OfflineAdapter(itemList, getActivity().getApplicationContext());
+            rvOffline.setAdapter(offlineAdapter);
+            rvOffline.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         }
-
-        MyRecyclerView rvOffline = (MyRecyclerView) Objects.requireNonNull(getActivity()).findViewById(R.id.rvOffline);
-        rvOffline.setHasFixedSize(true);
-
-        OfflineAdapter offlineAdapter = new OfflineAdapter(itemList,getActivity().getApplicationContext());
-        rvOffline.setAdapter(offlineAdapter);
-        rvOffline.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        else {
+            myTvNoData = Objects.requireNonNull(getActivity()).findViewById(R.id.myTvNoData);
+            myTvNoData.setVisibility(View.VISIBLE);
+        }
 
     }
 }

@@ -51,4 +51,5 @@
     <string name="yes">Yes</string>
     <string name="error">Error</string>
     <string name="indicator_not_available">We are so sorry but this indicator is not available</string>
+    <string name="no_offline">No offline data found</string>
 </resources>

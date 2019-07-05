@@ -2,7 +2,9 @@ package it.apperol.group.worlddatabank;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -10,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -19,7 +23,16 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.mahfa.dnswitch.DayNightSwitch;
 import com.mahfa.dnswitch.DayNightSwitchAnimListener;
 
+import java.io.File;
+
+import it.apperol.group.worlddatabank.itemlist.OfflineDataItem;
+
 public class SettingsActivity extends AppCompatActivity {
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +46,8 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
@@ -88,6 +103,18 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             }
             return false;
+        }
+
+        private void deleteDataFiles() {
+            String path =  getActivity().getApplicationContext().getFilesDir().toString();
+            File directory = new File(path);
+            File[] files = directory.listFiles();
+            if(files.length > 0) {
+                Log.i("Files", "Size: " + files.length);
+                for (int i = 0; i < files.length; i++) {
+                    files[i].delete();
+                }
+            }
         }
 
         @Override

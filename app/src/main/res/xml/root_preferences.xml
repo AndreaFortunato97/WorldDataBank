@@ -49,16 +49,12 @@
     <PreferenceCategory app:title="@string/storage">
 
         <ListPreference
-        app:key="storage"
+        app:key="del_after"
         app:defaultValue="0"
         app:entries="@array/delete_entries"
         app:entryValues="@array/delete_values"
         app:title="@string/del_after"
         app:useSimpleSummaryProvider="true" />
-
-        <Preference android:title="@string/del_stat"
-            android:key="del_now"
-            android:summary="@string/del_stat_now"/>
 
     </PreferenceCategory>
 
