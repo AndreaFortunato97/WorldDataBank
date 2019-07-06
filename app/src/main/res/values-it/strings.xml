@@ -35,4 +35,22 @@
     <string name="choose_country">Scegli un paese</string>
     <string name="choose_indicator">Scegli un indicatore</string>
     <string name="choose_topic">Scegli un argomento</string>
+    <string name="error">Errore</string>
+    <string name="grantPerm">Per favore concedi i permessi di lettura/scrittura su memoria esterna</string>
+    <string name="indicator_not_available">Ci dispiace ma l\'indicatore scelto non è disponibile</string>
+    <string name="loading">Caricamento…</string>
+    <string name="menu_gallery">Galleria</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_slideshow">Dati offline</string>
+    <string name="menu_tools">Impostazioni</string>
+    <string name="no_offline">Nessun dato offline trovato</string>
+    <string name="offline">Non sei connesso ad internet…\nPuoi vedere solo i dati offline (precedentemente salvati)</string>
+    <string name="permError"><![CDATA[---> Errore sui permessi <---]]></string>
+    <string name="permDenied"><![CDATA[Permessi permanentemente negati (tramite "Non mostrare piu\'"). Per favore concedili andando sulla pagina dell\'app \'Impostazioni->Permessi\'.\n\nVuoi aprirla ora?]]></string>
+    <string name="please_choose_how_to_proceed">Per favore scegli come continuare</string>
+    <string name="save_graph_data">Salva i dati del grafico offline</string>
+    <string name="co_ar_in"><![CDATA[Paese —> Argomento —> Indicatore]]></string>
+    <string name="ar_in_co"><![CDATA[Argomento —> Indicatore —> Paese]]></string>
+    <string name="yes">Si</string>
+
 </resources>

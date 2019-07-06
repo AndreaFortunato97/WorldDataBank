@@ -50,6 +50,8 @@
     <string name="error">Error</string>
     <string name="indicator_not_available">We are so sorry but this indicator is not available</string>
     <string name="no_offline">No offline data found</string>
-    <string name="loading">Loading...</string>
-    <string name="offline">You are not connected to internet...\nYou can only see offline (saved) data</string>
+    <string name="loading">Loading…</string>
+    <string name="offline">You are not connected to internet…\nYou can only see offline (saved) data</string>
+    <string name="co_ar_in"><![CDATA[Country —> Argument —> Indicator]]></string>
+    <string name="ar_in_co"><![CDATA[Argument —> Indicator —> Country]]></string>
 </resources>

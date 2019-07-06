@@ -152,16 +152,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home && !(navigationView.getMenu().getItem(0).isChecked())) {
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).replace(R.id.content_frame, new WelcomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
         } else if (id == R.id.nav_gallery && !(navigationView.getMenu().getItem(1).isChecked())) {
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).replace(R.id.content_frame, new GalleryFragment()).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new GalleryFragment()).commit();
         } else if (id == R.id.nav_offline && !(navigationView.getMenu().getItem(2).isChecked())) {
             WelcomeFragment.count = 2;
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).replace(R.id.content_frame, new OfflineFragment()).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new OfflineFragment()).commit();
         } else if (id == R.id.nav_settings && !(navigationView.getMenu().getItem(3).isChecked())) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsActivity.SettingsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new SettingsActivity.SettingsFragment()).commit();
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         // 'false' se non voglio che rimanga selezionata l'opzione
@@ -181,7 +180,6 @@ public class MainActivity extends AppCompatActivity
                 deleteTempFolderRecursive(filesInDir);
             }
         }
-
         fileOrDirectory.delete();
     }
 }
