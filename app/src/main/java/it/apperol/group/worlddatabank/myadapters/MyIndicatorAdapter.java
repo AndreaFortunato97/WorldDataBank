@@ -66,7 +66,7 @@ public class MyIndicatorAdapter extends RecyclerView.Adapter<MyIndicatorAdapter.
         final MyIndicatorItem myIndicatorItem = myIndicatorItems.get(i);
 
         viewHolder.myTvIndicatorName.setText(myIndicatorItem.getIndicatorName());
-        viewHolder.myTvIndicatorID.setText(String.format("Indicator ID: %s", myIndicatorItem.getIndicatorID()));
+        viewHolder.myTvIndicatorID.setText(String.format(context.getResources().getString(R.string.indicator_id), myIndicatorItem.getIndicatorID()));
 
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             IndicatorActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundDark));
@@ -81,7 +81,7 @@ public class MyIndicatorAdapter extends RecyclerView.Adapter<MyIndicatorAdapter.
                 myIndicatorItemText = myIndicatorItem;
                 indicatorName = myIndicatorItem.getIndicatorName();
                 if(WelcomeFragment.count == 0) {
-                    FetchData process = new FetchData("http://api.worldbank.org/v2/country/" + MyCountryAdapter.countryIso2Code + "/indicator/" + myIndicatorItem.getIndicatorID() + "?format=json", IndicatorActivity.indicatorActivityContext, 3);
+                    FetchData process = new FetchData(IndicatorActivity.indicatorActivityContext.getResources().getString(R.string.fetch_country_url) + MyCountryAdapter.countryIso2Code + "/indicator/" + myIndicatorItem.getIndicatorID() + "?format=json", IndicatorActivity.indicatorActivityContext, 3);
                     process.execute();
                 }
                 else if(WelcomeFragment.count == 1){
@@ -154,9 +154,6 @@ public class MyIndicatorAdapter extends RecyclerView.Adapter<MyIndicatorAdapter.
         if(ja != null) {
             Intent plotIntent = new Intent(context, PlotActivity.class);
             context.startActivity(plotIntent);
-            Toast.makeText(context, "Hai cliccato sull'indicator " + myIndicatorItemText.getIndicatorName(), Toast.LENGTH_SHORT).show();
-        } else {
-            Log.i("[ERRORE]", "ERRORE");
         }
     }
 }

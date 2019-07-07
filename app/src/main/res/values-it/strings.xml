@@ -55,4 +55,25 @@
     <string name="back_exit">Premi ancora per uscire</string>
     <string name="enable_dark_mode">Abilita il tema scuro</string>
     <string name="tap_to_switch">Clicca per cambiare il tema chiaro/scuro</string>
+    <string name="country_url">http://api.worldbank.org/v2/country/?format=json</string>
+    <string name="flag_url">http://flagpedia.net/data/flags/w580/</string>
+    <string name="ok">Ok</string>
+    <string name="no">No</string>
+    <string name="topic_url">http://api.worldbank.org/v2/topic/</string>
+    <string name="app_info">Info app</string>
+    <string name="credits">Quest\'app e\' stata creata come progetto finale per l\'esame universitario \'Mobile Programming\'.\n\nAutori:\n\t\t• Fortunato Andrea\n\t\t• Malavasi Alessio\n\t\t• Visconti Vincenzo\n\t\t• Zaia Gino\n"</string>
+    <string name="fetch_country_url">http://api.worldbank.org/v2/country/</string>
+    <string name="indicator_id">ID indicatore: %s</string>
+    <string name="indicator">Indicatore: </string>
+    <string name="no_data">Nessun dato</string>
+    <string name="of_country"> del paese </string>
+    <string name="data_saved">Dati del grafico salvati</string>
+    <string name="chart_saved">Grafico salvato in galleria</string>
+    <string name="delete">Cancella</string>
+    <string name="chart_image_deleted">Immagine del grafico eliminata</string>
+    <string name="chart_for">Questo è il grafico di \'</string>
+    <string name="of_country_apostrophe">\' del paese \'</string>
+    <string name="share_with">Share with</string>
+    <string name="no_whatsapp">Whatsapp not Installed!</string>
+    <string name="fetch_topic_url">http://api.worldbank.org/v2/topic/?format=json</string>
 </resources>

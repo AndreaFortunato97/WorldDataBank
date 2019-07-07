@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myactivities.FullImageActivity">
+    tools:context=".myactivities.FullImageActivity"
+    android:background="?attr/backgroundcolor">
 
     <ImageView
         android:id="@+id/full_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:background="?attr/backgroundcolor"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

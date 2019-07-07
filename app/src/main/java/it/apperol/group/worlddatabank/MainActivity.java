@@ -117,15 +117,6 @@ public class MainActivity extends AppCompatActivity
 
         setLang();
 
-
-        /*// TODO: PREFERENCE (LINGUA)
-        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean x = s.getBoolean("lang", false);
-        Toast.makeText(this, x.toString(), Toast.LENGTH_SHORT).show();*/
-
-
-
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

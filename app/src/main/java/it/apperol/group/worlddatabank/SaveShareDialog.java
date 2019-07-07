@@ -81,15 +81,15 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.mbSaveData:
                 saveData(PlotActivity.ja.toString());
-                Snackbar.make(getActivity().findViewById(android.R.id.content), "Chart data saved successfully", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getActivity().findViewById(android.R.id.content), getString(R.string.data_saved), Snackbar.LENGTH_LONG).show();
                 dismiss();
                 break;
             case R.id.mbSave:
                 createFolder("ChartGallery");
                 final File file = saveImage(PlotActivity.mpLineChart, "ChartGallery", false);
 
-                Snackbar.make(getActivity().findViewById(android.R.id.content), "Chart saved to gallery", Snackbar.LENGTH_LONG)
-                        .setAction("Delete", new View.OnClickListener() {
+                Snackbar.make(getActivity().findViewById(android.R.id.content), getString(R.string.chart_saved), Snackbar.LENGTH_LONG)
+                        .setAction(getResources().getString(R.string.delete), new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 new AsyncTask<Void, Void, Void>(){
@@ -103,7 +103,7 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
                                     }
                                 }.execute();
 
-                                Toast.makeText(v.getContext(), "Chart image deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), getResources().getString(R.string.chart_image_deleted), Toast.LENGTH_SHORT).show();
                             }
                         }).show();
                 dismiss();
@@ -153,7 +153,6 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
 
         if (!folder.exists()) {
             if(!folder.mkdirs()) {
-                Log.e("[ERROR]", "Error creating folder");
                 Objects.requireNonNull(getActivity()).finish();
             }
         }
@@ -171,11 +170,10 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
             waIntent.setType("image/png");
             waIntent.setPackage(pack);
             waIntent.putExtra(android.content.Intent.EXTRA_STREAM, imageUri);
-            waIntent.putExtra(Intent.EXTRA_TEXT, "This is the chart for '" + MyIndicatorAdapter.indicatorName + "'of country ' " + MyCountryAdapter.countryName + "'");
-            PlotActivity.plotActivityContext.startActivity(Intent.createChooser(waIntent, "Share with"));
+            waIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.chart_for) + MyIndicatorAdapter.indicatorName + getString(R.string.of_country_apostrophe) + MyCountryAdapter.countryName + "'");
+            PlotActivity.plotActivityContext.startActivity(Intent.createChooser(waIntent, getResources().getString(R.string.share_with)));
         } catch (Exception e) {
-            Log.e("Error on sharing", e + " ");
-            Toast.makeText(PlotActivity.plotActivityContext, "Whatsapp not Installed!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PlotActivity.plotActivityContext, getResources().getString(R.string.no_whatsapp), Toast.LENGTH_SHORT).show();
         }
 
 

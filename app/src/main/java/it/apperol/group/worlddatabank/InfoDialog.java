@@ -17,9 +17,9 @@ public class InfoDialog extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder
-                .setTitle("App info")
-                .setMessage("This app was created as a final project for the university exam 'Mobile Programming'.\n\nAuthors:\n\t\t• Fortunato Andrea\n\t\t• Malavasi Alessio\n\t\t• Visconti Vincenzo\n\t\t• Zaia Gino\n")
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                .setTitle(getResources().getString(R.string.app_info))
+                .setMessage(getResources().getString(R.string.credits))
+                .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

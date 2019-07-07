@@ -68,7 +68,6 @@ public class MyTopicAdapter extends RecyclerView.Adapter<MyTopicAdapter.ViewHold
                 topicID = myTopicItem.getTopicID();
                 Intent indicatorIntent = new Intent(context, IndicatorActivity.class);
                 context.startActivity(indicatorIntent);
-                Toast.makeText(context, "Hai cliccato sul topic " + myTopicItem.getTopicName() + " ID: " + myTopicItem.getTopicID(), Toast.LENGTH_SHORT).show();
                 topicName = myTopicItem.getTopicName();
             }
         });

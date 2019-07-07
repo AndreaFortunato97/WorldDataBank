@@ -45,7 +45,6 @@ public class DayNightSwitchPreference extends Preference {
         dayNightSwitch.setAnimListener(new DayNightSwitchAnimListener() {
             @Override
             public void onAnimStart() {
-                Toast.makeText(getContext(), "Dark: " + dayNightSwitch.isNight(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

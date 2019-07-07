@@ -64,7 +64,7 @@ public class CountryActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        FetchData process = new FetchData("http://api.worldbank.org/v2/country/?format=json", this, 0);
+        FetchData process = new FetchData(getResources().getString(R.string.country_url), this, 0);
         process.execute();
     }
 
@@ -80,7 +80,7 @@ public class CountryActivity extends AppCompatActivity {
                     MyCountryItem myCountryItem = new MyCountryItem(
                             jo.getString("name") + " (" + jo.getString("iso2Code") + ")",
                             jo.getString("capitalCity"),
-                            "http://flagpedia.net/data/flags/w580/" + jo.getString("iso2Code").toLowerCase() + ".png", jo.getString("iso2Code"));
+                    countryActivityContext.getResources().getString(R.string.flag_url) + jo.getString("iso2Code").toLowerCase() + ".png", jo.getString("iso2Code"));
 
                     myCountryItems.add(myCountryItem);
                 }

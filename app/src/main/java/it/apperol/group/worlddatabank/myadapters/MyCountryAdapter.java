@@ -89,11 +89,9 @@ public class MyCountryAdapter extends RecyclerView.Adapter<MyCountryAdapter.View
                     context.startActivity(topicIntent);
                 }
                 else if(WelcomeFragment.count == 1){
-                    FetchData process = new FetchData("http://api.worldbank.org/v2/country/" + MyCountryAdapter.countryIso2Code + "/indicator/" + MyIndicatorAdapter.indicatorID + "?format=json", CountryActivity.countryActivityContext, 3);
+                    FetchData process = new FetchData(CountryActivity.countryActivityContext.getResources().getString(R.string.fetch_country_url) + MyCountryAdapter.countryIso2Code + "/indicator/" + MyIndicatorAdapter.indicatorID + "?format=json", CountryActivity.countryActivityContext, 3);
                     process.execute();
                 }
-                    Toast.makeText(context, "Hai cliccato sul paese " + myCountryItem.getCountryName(), Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -175,9 +173,6 @@ public class MyCountryAdapter extends RecyclerView.Adapter<MyCountryAdapter.View
         if(ja != null) {
             Intent plotIntent = new Intent(context, PlotActivity.class);
             context.startActivity(plotIntent);
-            Toast.makeText(context, "Hai cliccato sul paese " + countryName, Toast.LENGTH_SHORT).show();
-        } else {
-            Log.i("[ERRORE]", "ERRORE");
         }
     }
 

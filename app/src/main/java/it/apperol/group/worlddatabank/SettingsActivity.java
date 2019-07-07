@@ -91,9 +91,6 @@ public class SettingsActivity extends AppCompatActivity {
                 }
 
                 dayNightSwitch.setIsNight(!dayNightSwitch.isNight());
-
-                Toast.makeText(getActivity(), "Night: " + dayNightSwitch.isNight(), Toast.LENGTH_SHORT).show();
-
                 return true;
             }
             return false;
@@ -117,7 +114,6 @@ public class SettingsActivity extends AppCompatActivity {
             lang.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    Toast.makeText(getActivity(), "Nuova lingua: " + newValue.toString(), Toast.LENGTH_SHORT).show();
                     setLang(newValue.toString());
                     return true;
                 }

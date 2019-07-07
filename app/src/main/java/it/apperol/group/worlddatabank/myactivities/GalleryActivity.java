@@ -33,9 +33,6 @@ public class GalleryActivity extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.image_grid);
         // folder name
 
-        Log.i("[TEST]", Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DCIM + "/" + "ChartGallery"+"/");
-        Log.i("[TEST2]", Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString()+"/ChartGallery/");
-
         File folder = new File(Environment.getExternalStorageDirectory() +
                 "/" + Environment.DIRECTORY_DCIM + "/" + "ChartGallery"+"/");
 

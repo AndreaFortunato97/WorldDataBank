@@ -57,4 +57,25 @@
     <string name="back_exit">Click \'back\' again to exit</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
     <string name="tap_to_switch">Tap to switch through light/dark theme</string>
+    <string name="country_url">http://api.worldbank.org/v2/country/?format=json</string>
+    <string name="flag_url">http://flagpedia.net/data/flags/w580/</string>
+    <string name="ok">Ok</string>
+    <string name="no">No</string>
+    <string name="topic_url">http://api.worldbank.org/v2/topic/</string>
+    <string name="app_info">App info</string>
+    <string name="credits">This app was created as a final project for the university exam \'Mobile Programming\'.\n\nAuthors:\n\t\t• Fortunato Andrea\n\t\t• Malavasi Alessio\n\t\t• Visconti Vincenzo\n\t\t• Zaia Gino\n"</string>
+    <string name="fetch_country_url">http://api.worldbank.org/v2/country/</string>
+    <string name="indicator_id">Indicator ID: %s</string>
+    <string name="indicator">Indicator:</string>
+    <string name="no_data">No Data</string>
+    <string name="of_country"> of country </string>
+    <string name="data_saved">Chart data saved successfully</string>
+    <string name="chart_saved">Chart saved to gallery</string>
+    <string name="delete">Delete</string>
+    <string name="chart_image_deleted">Chart image deleted</string>
+    <string name="chart_for">This is the chart for \'</string>
+    <string name="of_country_apostrophe">\' of country \'</string>
+    <string name="share_with">Share with</string>
+    <string name="no_whatsapp">Whatsapp not Installed!</string>
+    <string name="fetch_topic_url">http://api.worldbank.org/v2/topic/?format=json</string>
 </resources>

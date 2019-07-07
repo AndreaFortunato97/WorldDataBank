@@ -63,7 +63,7 @@ public class TopicActivity extends AppCompatActivity {
 
 
         myTopicItems = new ArrayList<>();
-        FetchData process = new FetchData("http://api.worldbank.org/v2/topic/?format=json", this, 2);
+        FetchData process = new FetchData(getResources().getString(R.string.fetch_topic_url), this, 2);
         process.execute();
     }
 

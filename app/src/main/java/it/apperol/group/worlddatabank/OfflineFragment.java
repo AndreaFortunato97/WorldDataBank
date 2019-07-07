@@ -53,15 +53,12 @@ public class OfflineFragment extends Fragment {
         itemList = new ArrayList<>();
 
         String path =  getActivity().getApplicationContext().getFilesDir().toString();
-        Log.i("Files", "Path: " + path);
         File directory = new File(path);
         File[] files = directory.listFiles();
         if(files.length > 0) {
-            Log.i("Files", "Size: " + files.length);
             for (int i = 0; i < files.length; i++) {
                 OfflineDataItem item = new OfflineDataItem(files[i].getName());
                 itemList.add(item);
-                Log.i("Files", "FileName:" + itemList.get(i).getFileName());
             }
 
 

@@ -63,7 +63,7 @@ public class IndicatorActivity extends AppCompatActivity {
 
 
         myIndicatorItems = new ArrayList<>();
-        FetchData process = new FetchData("http://api.worldbank.org/v2/topic/" + MyTopicAdapter.topicID + "/indicator?format=json", this, 1);
+        FetchData process = new FetchData(getResources().getString(R.string.topic_url) + MyTopicAdapter.topicID + "/indicator?format=json", this, 1);
         process.execute();
     }
 

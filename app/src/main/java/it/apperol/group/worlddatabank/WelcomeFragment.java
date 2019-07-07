@@ -118,7 +118,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
             case R.id.mbCoArIn:
                 if(isConnected()) {
                     count = 0;
-                    Intent countryIntent = new Intent(getActivity(), CountryActivity.class);  //TODO: EVIDENCE.
+                    Intent countryIntent = new Intent(getActivity(), CountryActivity.class);
                     startActivity(countryIntent);
                 } else {
                     getActivity().recreate();
@@ -128,7 +128,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
             case R.id.mbArInCo:
                 if(isConnected()) {
                     count = 1;
-                    Intent topicIntent = new Intent(getActivity(), TopicActivity.class);  //TODO: EVIDENCE.
+                    Intent topicIntent = new Intent(getActivity(), TopicActivity.class);
                     startActivity(topicIntent);
                 } else {
                     getActivity().recreate();

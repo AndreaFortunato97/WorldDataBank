@@ -187,7 +187,7 @@ public class PlotActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 saveShareDialog.dismiss();
                             }
@@ -254,7 +254,6 @@ public class PlotActivity extends AppCompatActivity {
                 return;
             }
         }catch (Exception e){
-            Log.i("[CRASH]", "CRASH");
             e.printStackTrace();
             return;
         }
@@ -300,7 +299,7 @@ public class PlotActivity extends AppCompatActivity {
             noDataFoundDialog.setTitle(getResources().getString(R.string.error));
             noDataFoundDialog.setMessage(getResources().getString(R.string.indicator_not_available));
             noDataFoundDialog.setCancelable(false);
-            noDataFoundDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            noDataFoundDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -312,14 +311,14 @@ public class PlotActivity extends AppCompatActivity {
         }
         LineDataSet lineDataSet1;
         if(WelcomeFragment.count == 2) {
-            lineDataSet1 = new LineDataSet(dataVals, "Indicator: " + currentFileName[2]);
+            lineDataSet1 = new LineDataSet(dataVals, getResources().getString(R.string.indicator) + currentFileName[2]);
         } else {
-            lineDataSet1 = new LineDataSet(dataVals, "Indicator: " + MyIndicatorAdapter.indicatorName);
+            lineDataSet1 = new LineDataSet(dataVals, getResources().getString(R.string.indicator) + MyIndicatorAdapter.indicatorName);
         }
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();    // insieme di tutti i dati
         dataSets.add(lineDataSet1);         //aggiungo dati 1
 
-        mpLineChart.setNoDataText("No Data");        // NO DATA se non ci sono valori
+        mpLineChart.setNoDataText(getString(R.string.no_data));        // NO DATA se non ci sono valori
         mpLineChart.setNoDataTextColor(Color.BLUE);  // Colore di No Data
 
         mpLineChart.setDrawGridBackground(true);
@@ -359,9 +358,9 @@ public class PlotActivity extends AppCompatActivity {
 
         Description description = new Description();       //Descrizione da aggiungere sul grafico
         if(WelcomeFragment.count == 2) {
-            description.setText(currentFileName[1] + " of country " + currentFileName[0]);
+            description.setText(currentFileName[1] + getResources().getString(R.string.of_country) + currentFileName[0]);
         } else {
-            description.setText(MyTopicAdapter.topicName + " of country " + MyCountryAdapter.countryName);
+            description.setText(MyTopicAdapter.topicName + getResources().getString(R.string.of_country) + MyCountryAdapter.countryName);
         }
         description.setTextColor(Color.RED);
         description.setTextSize(10);

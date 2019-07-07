@@ -74,7 +74,7 @@ public class FetchData extends AsyncTask<Void,Void,Void> {
             noDataFoundDialog.setTitle(MainActivity.mainActivityContext.getResources().getString(R.string.error));
             noDataFoundDialog.setMessage(MainActivity.mainActivityContext.getResources().getString(R.string.indicator_not_available));
             noDataFoundDialog.setCancelable(false);
-            noDataFoundDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            noDataFoundDialog.setPositiveButton(mContext.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
