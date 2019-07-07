@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Environment;
@@ -74,7 +75,6 @@ public class PlotActivity extends AppCompatActivity {
     private static List<PlotObj> plotDatas = new ArrayList<>();
     public static LineChart mpLineChart;
     static int[] colorArray = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
-    //String[] legendName = {"Cazzo","Buddha","PadrePio","Salveenee"};
     public static JSONArray ja;
     private static ArrayList<Entry> dataVals;
 
@@ -87,6 +87,12 @@ public class PlotActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.MainAppThemeDark);
+        } else {
+            setTheme(R.style.MainAppTheme);
+        }
+
         super.onCreate(savedInstanceState);
 
         plotActivityContext = this;
@@ -119,7 +125,7 @@ public class PlotActivity extends AppCompatActivity {
             });
         }
 
-        mpLineChart =(LineChart) findViewById(R.id.line_chart);
+        mpLineChart = (LineChart) findViewById(R.id.line_chart);
 
         fetchPlot();
 
@@ -257,8 +263,6 @@ public class PlotActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_plot, menu);
         return true;
     }
 
@@ -305,14 +309,13 @@ public class PlotActivity extends AppCompatActivity {
         }
         LineDataSet lineDataSet1;
         if(WelcomeFragment.count == 2) {
-            lineDataSet1 = new LineDataSet(dataVals, "Indicator: " + currentFileName[2]);  //Grafico a linee 1
+            lineDataSet1 = new LineDataSet(dataVals, "Indicator: " + currentFileName[2]);
         } else {
-            lineDataSet1 = new LineDataSet(dataVals, "Indicator: " + MyIndicatorAdapter.indicatorName);  //Grafico a linee 1
+            lineDataSet1 = new LineDataSet(dataVals, "Indicator: " + MyIndicatorAdapter.indicatorName);
         }
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();    // insieme di tutti i dati
         dataSets.add(lineDataSet1);         //aggiungo dati 1
 
-        //mpLineChart.setBackgroundColor(Color.GREEN); // Colore sfondo
         mpLineChart.setNoDataText("No Data");        // NO DATA se non ci sono valori
         mpLineChart.setNoDataTextColor(Color.BLUE);  // Colore di No Data
 
@@ -321,6 +324,7 @@ public class PlotActivity extends AppCompatActivity {
         mpLineChart.setBorderColor(Color.RED);       // Colore Bordo Grafico
         mpLineChart.setBorderWidth(1);              // spessore bordo
         lineDataSet1.setColor(Color.RED);            // Colore di linea 1
+        lineDataSet1.setValueTextSize(10);
 
         Legend legend = mpLineChart.getLegend();      //legenda del grafico
         legend.setEnabled(true);
@@ -329,9 +333,15 @@ public class PlotActivity extends AppCompatActivity {
         legend.setForm(Legend.LegendForm.CIRCLE);
         legend.setFormSize(10);
         legend.setXEntrySpace(5);                     //spazio tra 2 text nella legenda
-        legend.setFormToTextSpace(10);                  //spazio tra icona e testo
+        legend.setFormToTextSpace(10);                  //spazio tra icona e testo*/
+        legend.setWordWrapEnabled(true);
 
-        LegendEntry[] legendEntries = new LegendEntry[4];   //valori nella legenda
+        mpLineChart.setExtraTopOffset(10f);
+        mpLineChart.setExtraRightOffset(10f);
+        mpLineChart.setExtraBottomOffset(10f);
+        mpLineChart.setExtraLeftOffset(10f);
+
+        LegendEntry[] legendEntries = new LegendEntry[4];
 
         for (int i=0; i<legendEntries.length; i++)
         {
@@ -360,9 +370,18 @@ public class PlotActivity extends AppCompatActivity {
         xAxis.setGranularityEnabled(true);
         xAxis.setDrawGridLines(true);
 
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            mpLineChart.setGridBackgroundColor(Color.BLACK);
+            lineDataSet1.setValueTextColor(Color.WHITE);
+            xAxis.setTextColor(Color.WHITE);
+            mpLineChart.getAxisLeft().setTextColor(Color.WHITE);
+            mpLineChart.getAxisRight().setTextColor(Color.WHITE);
+            mpLineChart.setBackgroundColor(getResources().getColor(R.color.backgroundDark));
+        }
+
 
         LineData data = new LineData(dataSets);    //grafio a linee
         mpLineChart.setData(data);                //imposta dati nel grafico
-        mpLineChart.invalidate();
+
     }
 }

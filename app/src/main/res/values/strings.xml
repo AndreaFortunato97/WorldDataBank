@@ -54,4 +54,5 @@
     <string name="offline">You are not connected to internet…\nYou can only see offline (saved) data</string>
     <string name="co_ar_in"><![CDATA[Country —> Argument —> Indicator]]></string>
     <string name="ar_in_co"><![CDATA[Argument —> Indicator —> Country]]></string>
+    <string name="back_exit">Click \'back\' again to exit</string>
 </resources>

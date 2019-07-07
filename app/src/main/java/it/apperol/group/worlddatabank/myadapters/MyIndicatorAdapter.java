@@ -3,6 +3,7 @@ package it.apperol.group.worlddatabank.myadapters;
 import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -66,6 +67,12 @@ public class MyIndicatorAdapter extends RecyclerView.Adapter<MyIndicatorAdapter.
 
         viewHolder.myTvIndicatorName.setText(myIndicatorItem.getIndicatorName());
         viewHolder.myTvIndicatorID.setText(String.format("Indicator ID: %s", myIndicatorItem.getIndicatorID()));
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            IndicatorActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundDark));
+        } else {
+            IndicatorActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundLight));
+        }
 
         viewHolder.llIndicator.setOnClickListener(new View.OnClickListener() {
             @Override

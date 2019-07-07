@@ -18,6 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
@@ -38,6 +39,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -62,6 +64,7 @@ import it.apperol.group.worlddatabank.myviews.MyTextView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Boolean doubleBackPressed = false;
     public static Context mainActivityContext;
     NavigationView navigationView;
 
@@ -142,8 +145,24 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            // TODO: Se non sei su 'WelcomeFragment' (controllare variabile 'currentFragment') torna in 'WelcomeFragment' altrimenti 'Tocca di nuovo per uscire'
-            super.onBackPressed();
+            Fragment f = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            if(!(f instanceof WelcomeFragment)) {
+                navigationView.getMenu().getItem(0).setChecked(true);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
+            } else {
+                if (doubleBackPressed) {
+                    super.onBackPressed();
+                    return;
+                }
+                doubleBackPressed = true;
+                Toast.makeText(this, getResources().getString(R.string.back_exit), Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        doubleBackPressed=false;
+                    }
+                }, 2000);
+            }
         }
     }
 

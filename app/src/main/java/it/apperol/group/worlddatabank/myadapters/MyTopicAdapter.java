@@ -3,6 +3,7 @@ package it.apperol.group.worlddatabank.myadapters;
 import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.ListPreference;
@@ -20,7 +21,9 @@ import java.util.List;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.itemlist.MyCountryItem;
 import it.apperol.group.worlddatabank.itemlist.MyTopicItem;
+import it.apperol.group.worlddatabank.myactivities.CountryActivity;
 import it.apperol.group.worlddatabank.myactivities.IndicatorActivity;
+import it.apperol.group.worlddatabank.myactivities.TopicActivity;
 import it.apperol.group.worlddatabank.myviews.MyTextView;
 
 public class MyTopicAdapter extends RecyclerView.Adapter<MyTopicAdapter.ViewHolder> implements Filterable {
@@ -52,6 +55,12 @@ public class MyTopicAdapter extends RecyclerView.Adapter<MyTopicAdapter.ViewHold
         final MyTopicItem myTopicItem = myTopicItems.get(i);
 
         viewHolder.myTvTopicName.setText(myTopicItem.getTopicName());
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            TopicActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundDark));
+        } else {
+            TopicActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundLight));
+        }
 
         viewHolder.llTopic.setOnClickListener(new View.OnClickListener() {
             @Override

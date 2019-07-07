@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.DialogFragment;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -58,6 +59,13 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
         mbSave = view.findViewById(R.id.mbSave);
         mbShare = view.findViewById(R.id.mbShare);
         mbCancel = view.findViewById(R.id.mbCancel);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            mbSaveData.setTextColor(getResources().getColor(R.color.textColorDark));
+            mbSave.setTextColor(getResources().getColor(R.color.textColorDark));
+            mbShare.setTextColor(getResources().getColor(R.color.textColorDark));
+            mbCancel.setTextColor(getResources().getColor(R.color.textColorDark));
+        }
 
         // 2. set click listeners on desired views
         mbSaveData.setOnClickListener(this);

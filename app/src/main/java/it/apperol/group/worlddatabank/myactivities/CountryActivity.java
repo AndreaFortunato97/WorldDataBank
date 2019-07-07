@@ -52,6 +52,7 @@ public class CountryActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.AppTheme);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country);
 
