@@ -270,6 +270,7 @@ public class PlotActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         File tmpFolderToDelete = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/.tmpChart/");
+
         if(tmpFolderToDelete.exists()) {
             deleteTempFolderRecursive(tmpFolderToDelete);
         }
