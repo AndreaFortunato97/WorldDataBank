@@ -233,8 +233,10 @@ public class MainActivity extends AppCompatActivity
 
     private void deleteTempFolderRecursive(File tmpFolderToDelete) {
         if (tmpFolderToDelete.isDirectory()) {
-            for (File filesInDir : tmpFolderToDelete.listFiles()) {
-                deleteTempFolderRecursive(filesInDir);
+            if(tmpFolderToDelete.listFiles() != null) {
+                for (File filesInDir : tmpFolderToDelete.listFiles()) {
+                    deleteTempFolderRecursive(filesInDir);
+                }
             }
         }
         tmpFolderToDelete.delete();

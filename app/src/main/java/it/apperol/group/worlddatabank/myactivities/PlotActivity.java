@@ -119,7 +119,6 @@ public class PlotActivity extends AppCompatActivity {
                 public void onClick(View view) {
 
                     askPermissions();
-
                     saveShareDialog.show(getSupportFragmentManager(), "mySaveShareDialog");
                 }
             });
@@ -278,8 +277,10 @@ public class PlotActivity extends AppCompatActivity {
 
     private void deleteTempFolderRecursive(File tmpFolderToDelete) {
         if (tmpFolderToDelete.isDirectory()) {
-            for (File filesInDir : tmpFolderToDelete.listFiles()) {
-                deleteTempFolderRecursive(filesInDir);
+            if(tmpFolderToDelete.listFiles() != null) {
+                for (File filesInDir : tmpFolderToDelete.listFiles()) {
+                    deleteTempFolderRecursive(filesInDir);
+                }
             }
         }
         tmpFolderToDelete.delete();
