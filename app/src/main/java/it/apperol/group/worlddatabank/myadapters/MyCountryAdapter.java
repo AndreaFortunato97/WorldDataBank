@@ -3,8 +3,10 @@ package it.apperol.group.worlddatabank.myadapters;
 import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.apperol.group.worlddatabank.MainActivity;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.WelcomeFragment;
 import it.apperol.group.worlddatabank.itemlist.MyCountryItem;
@@ -65,6 +68,13 @@ public class MyCountryAdapter extends RecyclerView.Adapter<MyCountryAdapter.View
 
         viewHolder.myTvCountryName.setText(myCountryItem.getCountryName());
         viewHolder.myTvCapitalName.setText(myCountryItem.getCapitalName());
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            CountryActivity.recyclerView.setBackgroundColor(Color.parseColor("#303030"));
+        } else {
+            CountryActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundColor));
+
+        }
 
         Picasso.get()
                 .load(myCountryItem.getImageUrl())

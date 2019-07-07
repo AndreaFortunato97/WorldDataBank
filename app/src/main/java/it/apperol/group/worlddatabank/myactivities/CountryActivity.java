@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +37,7 @@ public class CountryActivity extends AppCompatActivity {
 
     public static Context countryActivityContext;
 
-    private static RecyclerView recyclerView;
+    public static RecyclerView recyclerView;
     private static RecyclerView.Adapter adapter;
     private static JSONArray ja;
 
@@ -47,6 +48,14 @@ public class CountryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
+            Toast.makeText(this, "NOTTE", Toast.LENGTH_LONG).show();
+        } else {
+            setTheme(R.style.AppTheme);
+            Toast.makeText(this, "GIORNO", Toast.LENGTH_LONG).show();
+        }
 
         countryActivityContext = this;
 

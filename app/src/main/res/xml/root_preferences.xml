@@ -46,16 +46,4 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/storage">
-
-        <ListPreference
-        app:key="del_after"
-        app:defaultValue="0"
-        app:entries="@array/delete_entries"
-        app:entryValues="@array/delete_values"
-        app:title="@string/del_after"
-        app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
 </androidx.preference.PreferenceScreen>
