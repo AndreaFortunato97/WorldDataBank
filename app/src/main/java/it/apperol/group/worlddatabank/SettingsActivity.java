@@ -3,6 +3,7 @@ package it.apperol.group.worlddatabank;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreference;
 import androidx.preference.SwitchPreferenceCompat;
 
@@ -26,6 +28,7 @@ import com.mahfa.dnswitch.DayNightSwitch;
 import com.mahfa.dnswitch.DayNightSwitchAnimListener;
 
 import java.io.File;
+import java.util.Locale;
 
 import it.apperol.group.worlddatabank.itemlist.OfflineDataItem;
 
@@ -33,7 +36,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
+        return;
     }
 
     @Override
@@ -80,10 +84,10 @@ public class SettingsActivity extends AppCompatActivity {
 
                 if(dayNightSwitch.isNight()) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    restartApp();
+                    //restartApp();
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    restartApp();
+                    //restartApp();
                 }
 
                 dayNightSwitch.setIsNight(!dayNightSwitch.isNight());
@@ -105,6 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             //addPreferencesFromResource(R.xml.root_preferences);
+            setLang(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("language", "it"));
 
             lang = findPreference("language");
             day_night = findPreference("day_night");
@@ -113,9 +118,19 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Toast.makeText(getActivity(), "Nuova lingua: " + newValue.toString(), Toast.LENGTH_SHORT).show();
+                    setLang(newValue.toString());
                     return true;
                 }
             });
+        }
+
+        private void setLang(String lang) {
+            MainActivity.language = lang;
+            Locale locale = new Locale(MainActivity.language);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getResources().updateConfiguration(config,this.getResources().getDisplayMetrics());
 
         }
     }

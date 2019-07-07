@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -58,6 +59,7 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import it.apperol.group.worlddatabank.myviews.MyTextView;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity
     Boolean doubleBackPressed = false;
     public static Context mainActivityContext;
     NavigationView navigationView;
+
+    public static String language;
 
     @Override
     public Resources.Theme getTheme() {
@@ -111,10 +115,16 @@ public class MainActivity extends AppCompatActivity
             navigationView.setItemTextColor(csl);
         }
 
+        setLang();
+
+
         /*// TODO: PREFERENCE (LINGUA)
         SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean x = s.getBoolean("lang", false);
         Toast.makeText(this, x.toString(), Toast.LENGTH_SHORT).show();*/
+
+
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +162,7 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
             } else {
                 if (doubleBackPressed) {
-                    super.onBackPressed();
+                    finish();
                     return;
                 }
                 doubleBackPressed = true;
@@ -229,6 +239,18 @@ public class MainActivity extends AppCompatActivity
         if(tmpFolderToDelete.exists()) {
             deleteTempFolderRecursive(tmpFolderToDelete);
         }
+
+        setLang();
+    }
+
+    private void setLang() {
+        language = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "it");
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale); // Imposto la lingua dell'applicazione in Inglese
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getResources().updateConfiguration(config,this.getResources().getDisplayMetrics()); // Aggiorno la configurazione (impostazione interna) dell'applicazione con la nuova lingua
+
     }
 
     private void deleteTempFolderRecursive(File tmpFolderToDelete) {

@@ -55,4 +55,6 @@
     <string name="co_ar_in"><![CDATA[Country —> Argument —> Indicator]]></string>
     <string name="ar_in_co"><![CDATA[Argument —> Indicator —> Country]]></string>
     <string name="back_exit">Click \'back\' again to exit</string>
+    <string name="enable_dark_mode">Enable Dark Mode</string>
+    <string name="tap_to_switch">Tap to switch through light/dark theme</string>
 </resources>

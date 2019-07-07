@@ -27,7 +27,7 @@
             app:entries="@array/languages_entries"
             app:entryValues="@array/languages_values"
             app:title="@string/def_lang"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
 
@@ -42,8 +42,8 @@
         <it.apperol.group.worlddatabank.DayNightSwitchPreference
             android:key="day_night"
             android:widgetLayout="@layout/daynight_switch"
-            android:title="Enable Dark Mode"
-            android:summary="The app is in 'Light mode'" />
+            android:title="@string/enable_dark_mode"
+            android:summary="@string/tap_to_switch"/>
 
     </PreferenceCategory>
 

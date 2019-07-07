@@ -1,15 +1,18 @@
 package it.apperol.group.worlddatabank;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.FragmentActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
 import com.mahfa.dnswitch.DayNightSwitch;
+import com.mahfa.dnswitch.DayNightSwitchAnimListener;
 import com.mahfa.dnswitch.DayNightSwitchListener;
 
 public class DayNightSwitchPreference extends Preference {
@@ -32,20 +35,39 @@ public class DayNightSwitchPreference extends Preference {
     @Override
     public void onBindViewHolder(final PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
-        DayNightSwitch dayNightSwitch = holder.itemView.findViewById(R.id.day_night_switch);
+        final DayNightSwitch dayNightSwitch = holder.itemView.findViewById(R.id.day_night_switch);
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             dayNightSwitch.setIsNight(true);
         } else {
-            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             dayNightSwitch.setIsNight(false);
         }
 
-        /*dayNightSwitch.setListener(new DayNightSwitchListener() {
+        dayNightSwitch.setAnimListener(new DayNightSwitchAnimListener() {
             @Override
-            public void onSwitch(boolean b) {
-                Toast.makeText(holder.itemView.getContext(), "CLICKED!", Toast.LENGTH_SHORT).show();
+            public void onAnimStart() {
+                Toast.makeText(getContext(), "Dark: " + dayNightSwitch.isNight(), Toast.LENGTH_SHORT).show();
             }
-        });*/
+
+            @Override
+            public void onAnimEnd() {
+                if(dayNightSwitch.isNight()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    //restartApp();
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    //restartApp();
+                }
+            }
+
+            @Override
+            public void onAnimValueChanged(float v) {
+
+            }
+        });
+    }
+
+    private void restartApp() {
+        Intent i = new Intent(MainActivity.mainActivityContext, MainActivity.class);
+        getContext().startActivity(i);
     }
 }
