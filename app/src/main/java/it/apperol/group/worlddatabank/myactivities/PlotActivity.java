@@ -269,6 +269,7 @@ public class PlotActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        createFolder(".tmpChart");
         deleteTempFolderRecursive(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/.tmpChart/"));
     }
 
@@ -382,6 +383,16 @@ public class PlotActivity extends AppCompatActivity {
 
         LineData data = new LineData(dataSets);    //grafio a linee
         mpLineChart.setData(data);                //imposta dati nel grafico
+    }
 
+    private void createFolder(String folderName) {
+        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/" + folderName + "/");
+
+        if (!folder.exists()) {
+            if(!folder.mkdirs()) {
+                Toast.makeText(this, "Errore creating Temp Chart Folder...", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
     }
 }

@@ -58,6 +58,7 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 import it.apperol.group.worlddatabank.myviews.MyTextView;
 
@@ -223,6 +224,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        createFolder(".tmpChart");
         deleteTempFolderRecursive(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/.tmpChart/"));
     }
 
@@ -234,5 +236,16 @@ public class MainActivity extends AppCompatActivity
             }
         }
         fileOrDirectory.delete();
+    }
+
+    private void createFolder(String folderName) {
+        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/" + folderName + "/");
+
+        if (!folder.exists()) {
+            if(!folder.mkdirs()) {
+                Toast.makeText(this, "Errore creating Temp Chart Folder...", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
     }
 }

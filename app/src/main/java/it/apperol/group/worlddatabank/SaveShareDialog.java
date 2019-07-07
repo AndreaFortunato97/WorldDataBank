@@ -148,8 +148,6 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
         }
     }
 
-
-
     private void createFolder(String folderName) {
         File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/" + folderName + "/");
 
