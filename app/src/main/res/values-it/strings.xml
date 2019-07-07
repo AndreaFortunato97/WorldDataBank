@@ -73,7 +73,7 @@
     <string name="chart_image_deleted">Immagine del grafico eliminata</string>
     <string name="chart_for">Questo è il grafico di \'</string>
     <string name="of_country_apostrophe">\' del paese \'</string>
-    <string name="share_with">Share with</string>
-    <string name="no_whatsapp">Whatsapp not Installed!</string>
+    <string name="share_with">Condividi con</string>
+    <string name="no_whatsapp">Whatsapp not installato!</string>
     <string name="fetch_topic_url">http://api.worldbank.org/v2/topic/?format=json</string>
 </resources>

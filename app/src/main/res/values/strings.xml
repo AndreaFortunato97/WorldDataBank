@@ -76,6 +76,6 @@
     <string name="chart_for">This is the chart for \'</string>
     <string name="of_country_apostrophe">\' of country \'</string>
     <string name="share_with">Share with</string>
-    <string name="no_whatsapp">Whatsapp not Installed!</string>
+    <string name="no_whatsapp">Whatsapp not installed!</string>
     <string name="fetch_topic_url">http://api.worldbank.org/v2/topic/?format=json</string>
 </resources>
