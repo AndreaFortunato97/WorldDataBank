@@ -224,28 +224,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        createFolder(".tmpChart");
         deleteTempFolderRecursive(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/.tmpChart/"));
     }
 
     private void deleteTempFolderRecursive(File fileOrDirectory) {
 
-        if (fileOrDirectory.isDirectory()) {
-            for (File filesInDir : fileOrDirectory.listFiles()) {
-                deleteTempFolderRecursive(filesInDir);
+        if(fileOrDirectory.exists()) {
+            if (fileOrDirectory.isDirectory()) {
+                for (File filesInDir : fileOrDirectory.listFiles()) {
+                    deleteTempFolderRecursive(filesInDir);
+                }
             }
-        }
-        fileOrDirectory.delete();
-    }
-
-    private void createFolder(String folderName) {
-        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/" + folderName + "/");
-
-        if (!folder.exists()) {
-            if(!folder.mkdirs()) {
-                Toast.makeText(this, "Errore creating Temp Chart Folder...", Toast.LENGTH_LONG).show();
-                finish();
-            }
+            fileOrDirectory.delete();
         }
     }
 }
