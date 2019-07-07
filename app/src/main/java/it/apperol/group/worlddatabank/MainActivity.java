@@ -224,18 +224,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        deleteTempFolderRecursive(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/.tmpChart/"));
+        File tmpFolderToDelete = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/.tmpChart/");
+        if(tmpFolderToDelete.exists()) {
+            deleteTempFolderRecursive(tmpFolderToDelete);
+        }
     }
 
-    private void deleteTempFolderRecursive(File fileOrDirectory) {
-
-        if(fileOrDirectory.exists()) {
-            if (fileOrDirectory.isDirectory()) {
-                for (File filesInDir : fileOrDirectory.listFiles()) {
-                    deleteTempFolderRecursive(filesInDir);
-                }
+    private void deleteTempFolderRecursive(File tmpFolderToDelete) {
+        if (tmpFolderToDelete.isDirectory()) {
+            for (File filesInDir : tmpFolderToDelete.listFiles()) {
+                deleteTempFolderRecursive(filesInDir);
             }
-            fileOrDirectory.delete();
         }
+        tmpFolderToDelete.delete();
     }
 }
