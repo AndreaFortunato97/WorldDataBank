@@ -70,10 +70,9 @@ public class MyCountryAdapter extends RecyclerView.Adapter<MyCountryAdapter.View
         viewHolder.myTvCapitalName.setText(myCountryItem.getCapitalName());
 
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            CountryActivity.recyclerView.setBackgroundColor(Color.parseColor("#303030"));
+            CountryActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundDark));
         } else {
-            CountryActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundColor));
-
+            CountryActivity.recyclerView.setBackgroundColor(context.getResources().getColor(R.color.backgroundLight));
         }
 
         Picasso.get()

@@ -15,7 +15,8 @@
   -->
 
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="?attr/backgroundcolor" >
 
 
     <PreferenceCategory app:title="@string/language">

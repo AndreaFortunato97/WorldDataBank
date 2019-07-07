@@ -3,5 +3,6 @@
     <declare-styleable name="ds">
         <attr name="backgroundcolor" format="color" />
         <attr name="cardbackground" format="color" />
+        <attr name="textColor" format="color" />
     </declare-styleable>
 </resources>

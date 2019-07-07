@@ -3,6 +3,8 @@ package it.apperol.group.worlddatabank;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
@@ -16,6 +18,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Environment;
+import android.text.SpannableString;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +66,23 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
 
     @Override
+    public Resources.Theme getTheme() {
+        Resources.Theme theme = super.getTheme();
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            theme.applyStyle(R.style.MainAppThemeDark, true);
+        } else {
+            theme.applyStyle(R.style.MainAppTheme, true);
+        }
+        return theme;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
 
         mainActivityContext = this.getApplicationContext();
@@ -73,12 +94,17 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        navigationView = findViewById(R.id.nav_view);
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            setTheme(R.style.AppThemeDark);
-            Toast.makeText(this, "NOTTE", Toast.LENGTH_LONG).show();
+            navigationView.setBackgroundColor(getColor(R.color.backgroundDark));
+            int colorInt = getResources().getColor(R.color.textColorDark);
+            ColorStateList csl = ColorStateList.valueOf(colorInt);
+            navigationView.setItemTextColor(csl);
         } else {
-            setTheme(R.style.AppTheme);
-            Toast.makeText(this, "GIORNO", Toast.LENGTH_LONG).show();
+            navigationView.setBackgroundColor(getColor(R.color.backgroundLight));
+            int colorInt = getResources().getColor(R.color.textColorLight);
+            ColorStateList csl = ColorStateList.valueOf(colorInt);
+            navigationView.setItemTextColor(csl);
         }
 
         /*// TODO: PREFERENCE (LINGUA)
@@ -95,7 +121,6 @@ public class MainActivity extends AppCompatActivity
         });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -124,8 +149,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        int positionOfMenuItem = 0; // or whatever...
+
+        MenuItem item = menu.getItem(positionOfMenuItem);
+        SpannableString s = new SpannableString(getResources().getString(R.string.action_settings));
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
+        } else {
+            s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, s.length(), 0);
+        }
+        item.setTitle(s);
         return true;
     }
 
@@ -158,9 +193,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_offline && !(navigationView.getMenu().getItem(2).isChecked())) {
             WelcomeFragment.count = 2;
             getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new OfflineFragment()).commit();
-        } else if (id == R.id.nav_settings && !(navigationView.getMenu().getItem(3).isChecked())) {
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new SettingsActivity.SettingsFragment()).commit();
         }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         // 'false' se non voglio che rimanga selezionata l'opzione
