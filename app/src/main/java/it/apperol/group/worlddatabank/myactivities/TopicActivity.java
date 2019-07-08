@@ -51,6 +51,7 @@ public class TopicActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.AppTheme);
         }
+        setTitle(getResources().getString(R.string.choose_topic));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic);

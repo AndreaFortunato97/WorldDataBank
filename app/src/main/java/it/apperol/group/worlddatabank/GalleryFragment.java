@@ -66,30 +66,27 @@ public class GalleryFragment extends Fragment {
 
         if (!folder.exists())
         {
-            success = folder.mkdirs();
-        }
+            getActivity().findViewById(R.id.image_grid).setVisibility(View.INVISIBLE);
+            getActivity().findViewById(R.id.no_images).setVisibility(View.VISIBLE);
+        } else {
+            if((folder.listFiles() == null) || (folder.listFiles().length == 0)) {
+                getActivity().findViewById(R.id.image_grid).setVisibility(View.INVISIBLE);
+                getActivity().findViewById(R.id.no_images).setVisibility(View.VISIBLE);
+            } else {
+                file = new File(String.valueOf(folder));
+                list = imageReader(file);
 
-        if (success)
-        {
-            file = new File(String.valueOf(folder));
-            ;           }
-        else
-        {
-            File folder2 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/" + "ChartGallery"+"/");
-            file = new File(String.valueOf(folder2));
-        }
-
-        list = imageReader(file);
-
-        gridView.setAdapter(new gridAdapter());
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-            {
-                openActivity(i);
+                gridView.setAdapter(new gridAdapter());
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+                    {
+                        openActivity(i);
+                    }
+                });
             }
-        });
+        }
     }
 
     private void askPermissions() {
@@ -224,9 +221,6 @@ public class GalleryFragment extends Fragment {
                     }
                 }
             }
-        } else {
-            getActivity().findViewById(R.id.image_grid).setVisibility(View.INVISIBLE);
-            getActivity().findViewById(R.id.no_images).setVisibility(View.VISIBLE);
         }
 
         return b;

@@ -92,6 +92,7 @@ public class PlotActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.MainAppTheme);
         }
+        setTitle(getResources().getString(R.string.title_activity_plot));
 
         super.onCreate(savedInstanceState);
 

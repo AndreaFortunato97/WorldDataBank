@@ -76,4 +76,7 @@
     <string name="share_with">Condividi con</string>
     <string name="no_whatsapp">Whatsapp not installato!</string>
     <string name="fetch_topic_url">http://api.worldbank.org/v2/topic/?format=json</string>
+    <string name="refresh">Aggiorna</string>
+    <string name="no_images">Nessun immagine trovata</string>
+    <string name="defValue">Non impostata</string>
 </resources>

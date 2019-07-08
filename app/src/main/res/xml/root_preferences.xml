@@ -27,7 +27,8 @@
             app:entries="@array/languages_entries"
             app:entryValues="@array/languages_values"
             app:title="@string/def_lang"
-            app:useSimpleSummaryProvider="true"/>
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="@string/defValue"/>
 
     </PreferenceCategory>
 

@@ -3,6 +3,7 @@ package it.apperol.group.worlddatabank;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,9 +48,15 @@ public class SettingsActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.AppTheme);
         }
+        setTitle(getResources().getString(R.string.title_activity_settings));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+
+        // This static call will reset default values only on the first ever read
+        SharedPreferences prefs = getSharedPreferences("it.apperol.group.worlddatabank_preferences", MODE_PRIVATE);
+        prefs.edit().putString("language", PreferenceManager.getDefaultSharedPreferences(this).getString("language", "it")).apply();
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.settings, new SettingsFragment())
@@ -110,6 +117,10 @@ public class SettingsActivity extends AppCompatActivity {
 
             lang = findPreference("language");
             day_night = findPreference("day_night");
+
+            if (lang.getValue() == null) {
+                lang.setValueIndex(1);
+            }
 
             lang.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override

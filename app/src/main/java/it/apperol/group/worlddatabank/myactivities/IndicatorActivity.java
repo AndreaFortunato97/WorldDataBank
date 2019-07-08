@@ -50,6 +50,7 @@ public class IndicatorActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.AppTheme);
         }
+        setTitle(getResources().getString(R.string.choose_indicator));
 
         super.onCreate(savedInstanceState);
 

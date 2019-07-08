@@ -15,7 +15,8 @@
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="spacingWidthUniform"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:visibility="invisible"/>
 
     <it.apperol.group.worlddatabank.myviews.MyTextView
         android:id="@+id/no_images"
@@ -25,11 +26,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="No downloaded images found"
+        android:text="@string/no_images"
         android:textColor="#FF0000"
         android:textStyle="bold"
         android:gravity="center"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/image_grid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

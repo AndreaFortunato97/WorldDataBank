@@ -17,7 +17,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".myactivities.FullImageActivity"></activity>
+        <activity
+            android:name=".myactivities.FullImageActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".myactivities.ProgressActivity"
             android:label=""
