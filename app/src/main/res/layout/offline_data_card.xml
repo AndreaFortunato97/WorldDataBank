@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:background="?attr/cardbackground"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp">
@@ -17,7 +17,7 @@
         <LinearLayout
             android:id="@+id/llOffline"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -30,28 +30,62 @@
                     android:id="@+id/myTvOfflineCountry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="start"
+                    android:text="Country"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/ivDel"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivDel" />
+
                 <ImageView
                     android:id="@+id/ivDel"
                     android:layout_width="25dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="25dp"
                     android:src="@drawable/trash_icon"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <it.apperol.group.worlddatabank.myviews.MyTextView
+                android:id="@+id/myTvOfflineTopic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Topic"
+                android:layout_marginStart="10dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <it.apperol.group.worlddatabank.myviews.MyTextView
                 android:id="@+id/myTvOfflineIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Indicator"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

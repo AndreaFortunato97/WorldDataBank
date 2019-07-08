@@ -2,32 +2,20 @@ package it.apperol.group.worlddatabank;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Environment;
 import android.os.Handler;
 import android.text.SpannableString;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -41,28 +29,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
-import androidx.preference.SwitchPreferenceCompat;
 
 import android.view.Menu;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
-
-import it.apperol.group.worlddatabank.myviews.MyTextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -95,7 +68,6 @@ public class MainActivity extends AppCompatActivity
 
         mainActivityContext = this.getApplicationContext();
 
-        // Inserisco nell'activity principale 'MainActivity' il fragment 'WelcomeFragment', cioè la pagina iniziale
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new WelcomeFragment()).commit();
 
@@ -171,7 +143,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        int positionOfMenuItem = 0; // or whatever...
+        int positionOfMenuItem = 0;
 
         MenuItem item = menu.getItem(positionOfMenuItem);
         SpannableString s = new SpannableString(getResources().getString(R.string.action_settings));
@@ -187,24 +159,17 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
-            //return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home && !(navigationView.getMenu().getItem(0).isChecked())) {
@@ -218,7 +183,8 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        // 'false' se non voglio che rimanga selezionata l'opzione
+
+        // 'false' se non voglio che rimanga selezionata l'opzione nel menu'
         return true;
     }
 
@@ -237,11 +203,10 @@ public class MainActivity extends AppCompatActivity
     private void setLang() {
         language = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "it");
         Locale locale = new Locale(language);
-        Locale.setDefault(locale); // Imposto la lingua dell'applicazione in Inglese
+        Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getResources().updateConfiguration(config,this.getResources().getDisplayMetrics()); // Aggiorno la configurazione (impostazione interna) dell'applicazione con la nuova lingua
-
+        getResources().updateConfiguration(config,this.getResources().getDisplayMetrics());
     }
 
     private void deleteTempFolderRecursive(File tmpFolderToDelete) {

@@ -2,18 +2,14 @@ package it.apperol.group.worlddatabank.myadapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
@@ -24,7 +20,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 import it.apperol.group.worlddatabank.MainActivity;
 import it.apperol.group.worlddatabank.OfflineFragment;
@@ -33,9 +28,6 @@ import it.apperol.group.worlddatabank.itemlist.OfflineDataItem;
 import it.apperol.group.worlddatabank.myactivities.PlotActivity;
 import it.apperol.group.worlddatabank.myviews.MyTextView;
 
-
-// Create the basic adapter extending from RecyclerView.Adapter
-// Note that we specify the custom ViewHolder which gives us access to our views
 
 public class OfflineAdapter extends
         RecyclerView.Adapter<OfflineAdapter.ViewHolder> {
@@ -63,7 +55,15 @@ public class OfflineAdapter extends
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final OfflineDataItem data = offlineDataItemList.get(position);
 
-        holder.tvOfflineCountry.setText(data.getFileName());
+        String[] fileNameSplitted = data.getFileName().split("-");
+        String country = fileNameSplitted[0];
+        String topic = fileNameSplitted[1];
+        String indicator = fileNameSplitted[2].substring(0, fileNameSplitted[2].length()-4);
+
+        holder.tvOfflineCountry.setText(country);
+        holder.tvOfflineTopic.setText(topic);
+        holder.tvOfflineIndicator.setText(indicator);
+
         holder.llOffline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,24 +96,18 @@ public class OfflineAdapter extends
         return offlineDataItemList.size();
     }
 
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
         public MyTextView tvOfflineCountry;
+        public MyTextView tvOfflineTopic;
         public MyTextView tvOfflineIndicator;
         public LinearLayout llOffline;
         public ImageView ivDel;
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
         public ViewHolder(@NonNull View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
             super(itemView);
 
             tvOfflineCountry = itemView.findViewById(R.id.myTvOfflineCountry);
+            tvOfflineTopic = itemView.findViewById(R.id.myTvOfflineTopic);
             tvOfflineIndicator = itemView.findViewById(R.id.myTvOfflineIndicator);
             llOffline = itemView.findViewById(R.id.llOffline);
             ivDel = itemView.findViewById(R.id.ivDel);

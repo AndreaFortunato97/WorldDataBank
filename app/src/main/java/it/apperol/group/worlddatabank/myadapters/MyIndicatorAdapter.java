@@ -6,30 +6,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.WelcomeFragment;
 import it.apperol.group.worlddatabank.itemlist.MyIndicatorItem;
-import it.apperol.group.worlddatabank.itemlist.MyTopicItem;
 import it.apperol.group.worlddatabank.myactivities.CountryActivity;
 import it.apperol.group.worlddatabank.myactivities.IndicatorActivity;
 import it.apperol.group.worlddatabank.myactivities.PlotActivity;
-import it.apperol.group.worlddatabank.myobjects.PlotObj;
 import it.apperol.group.worlddatabank.mythreads.FetchData;
 import it.apperol.group.worlddatabank.myviews.MyTextView;
 

@@ -6,22 +6,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.preference.ListPreference;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import it.apperol.group.worlddatabank.R;
-import it.apperol.group.worlddatabank.itemlist.MyCountryItem;
 import it.apperol.group.worlddatabank.itemlist.MyTopicItem;
-import it.apperol.group.worlddatabank.myactivities.CountryActivity;
 import it.apperol.group.worlddatabank.myactivities.IndicatorActivity;
 import it.apperol.group.worlddatabank.myactivities.TopicActivity;
 import it.apperol.group.worlddatabank.myviews.MyTextView;

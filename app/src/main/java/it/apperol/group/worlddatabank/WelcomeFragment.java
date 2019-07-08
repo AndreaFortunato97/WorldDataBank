@@ -17,7 +17,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -95,7 +94,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     private void underlineChoose() {
         Spannable spannable = new SpannableString(getString(R.string.choose_info));
         iStart = 1;
-        iEnd = iStart + 19; // Lunghezza stringa da cliccare
+        iEnd = iStart + 19;
 
         SpannableString ssText = new SpannableString(spannable);
         ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary));

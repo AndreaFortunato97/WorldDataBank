@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -24,18 +21,15 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.apperol.group.worlddatabank.MainActivity;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.WelcomeFragment;
 import it.apperol.group.worlddatabank.itemlist.MyCountryItem;
 import it.apperol.group.worlddatabank.myactivities.CountryActivity;
-import it.apperol.group.worlddatabank.myactivities.IndicatorActivity;
 import it.apperol.group.worlddatabank.myactivities.PlotActivity;
 import it.apperol.group.worlddatabank.myactivities.TopicActivity;
 import it.apperol.group.worlddatabank.mythreads.FetchData;
 import it.apperol.group.worlddatabank.myviews.MyTextView;
 
-import static it.apperol.group.worlddatabank.myadapters.MyIndicatorAdapter.myIndicatorItemText;
 
 public class MyCountryAdapter extends RecyclerView.Adapter<MyCountryAdapter.ViewHolder> implements Filterable {
 
@@ -156,19 +150,6 @@ public class MyCountryAdapter extends RecyclerView.Adapter<MyCountryAdapter.View
 
     public static void fetchDataControl() {
         ja = FetchData.ja;
-
-                /*try {
-                    for(int i = 0; i < ja.getJSONArray(1).length(); i++){
-                        JSONObject jo = (JSONObject) ja.getJSONArray(1).get(i);
-                        if(!jo.get("value").equals("") && jo.get("value") != null && !jo.get("value").equals("null") && !jo.isNull("value")) {
-                            plotDatas.add(new PlotObj(jo.get("date").toString(), jo.get("value").toString()));
-                        }
-                    }
-                }catch (Exception e){
-                    Log.i("[CRASH]", "CRASH");
-                    e.printStackTrace();
-                    return;
-                }*/
 
         if(ja != null) {
             Intent plotIntent = new Intent(context, PlotActivity.class);

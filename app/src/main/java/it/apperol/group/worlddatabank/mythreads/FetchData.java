@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Looper;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,15 +16,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Objects;
 
 import it.apperol.group.worlddatabank.MainActivity;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.WelcomeFragment;
-import it.apperol.group.worlddatabank.itemlist.MyIndicatorItem;
 import it.apperol.group.worlddatabank.myactivities.CountryActivity;
 import it.apperol.group.worlddatabank.myactivities.IndicatorActivity;
-import it.apperol.group.worlddatabank.myactivities.PlotActivity;
 import it.apperol.group.worlddatabank.myactivities.ProgressActivity;
 import it.apperol.group.worlddatabank.myactivities.TopicActivity;
 import it.apperol.group.worlddatabank.myadapters.MyCountryAdapter;

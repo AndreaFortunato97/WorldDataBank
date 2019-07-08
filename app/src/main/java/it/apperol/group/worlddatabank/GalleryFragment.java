@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import it.apperol.group.worlddatabank.myactivities.FullImageActivity;
-import it.apperol.group.worlddatabank.myactivities.GalleryActivity;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -41,11 +39,9 @@ public class GalleryFragment extends Fragment {
     private ArrayList<File> list;
     private GridView gridView;
     private File file;
-    boolean success = true;
 
     private ArrayList permissions = new ArrayList();
     private ArrayList permissionsToRequest;
-    private SaveShareDialog saveShareDialog = new SaveShareDialog();
 
     @Nullable
     @Override
@@ -222,7 +218,6 @@ public class GalleryFragment extends Fragment {
                 }
             }
         }
-
         return b;
     }
 

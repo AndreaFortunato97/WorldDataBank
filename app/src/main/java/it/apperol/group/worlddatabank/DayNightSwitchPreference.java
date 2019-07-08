@@ -3,17 +3,13 @@ package it.apperol.group.worlddatabank;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.fragment.app.FragmentActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
 import com.mahfa.dnswitch.DayNightSwitch;
 import com.mahfa.dnswitch.DayNightSwitchAnimListener;
-import com.mahfa.dnswitch.DayNightSwitchListener;
 
 public class DayNightSwitchPreference extends Preference {
     public DayNightSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -51,10 +47,8 @@ public class DayNightSwitchPreference extends Preference {
             public void onAnimEnd() {
                 if(dayNightSwitch.isNight()) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    //restartApp();
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    //restartApp();
                 }
             }
 
@@ -63,10 +57,5 @@ public class DayNightSwitchPreference extends Preference {
 
             }
         });
-    }
-
-    private void restartApp() {
-        Intent i = new Intent(MainActivity.mainActivityContext, MainActivity.class);
-        getContext().startActivity(i);
     }
 }

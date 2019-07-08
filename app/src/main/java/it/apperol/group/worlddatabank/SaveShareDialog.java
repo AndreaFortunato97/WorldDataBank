@@ -2,19 +2,13 @@ package it.apperol.group.worlddatabank;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,9 +21,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,8 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import it.apperol.group.worlddatabank.itemlist.MyCountryItem;
-import it.apperol.group.worlddatabank.myactivities.CountryActivity;
 import it.apperol.group.worlddatabank.myactivities.PlotActivity;
 import it.apperol.group.worlddatabank.myadapters.MyCountryAdapter;
 import it.apperol.group.worlddatabank.myadapters.MyIndicatorAdapter;
@@ -175,8 +165,6 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
         } catch (Exception e) {
             Toast.makeText(PlotActivity.plotActivityContext, getResources().getString(R.string.no_whatsapp), Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     private File saveImage(LineChart chart, String folderName, Boolean tempSave)
@@ -211,7 +199,6 @@ public class SaveShareDialog extends DialogFragment implements View.OnClickListe
         {
             e.printStackTrace();
         }
-
         return file;
     }
 }

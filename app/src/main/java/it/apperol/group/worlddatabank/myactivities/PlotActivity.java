@@ -1,6 +1,5 @@
 package it.apperol.group.worlddatabank.myactivities;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,12 +9,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +19,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Environment;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -44,15 +37,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.ExecutionException;
 
-import it.apperol.group.worlddatabank.MainActivity;
-import it.apperol.group.worlddatabank.OfflineFragment;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.SaveShareDialog;
 import it.apperol.group.worlddatabank.WelcomeFragment;
@@ -61,7 +49,6 @@ import it.apperol.group.worlddatabank.myadapters.MyIndicatorAdapter;
 import it.apperol.group.worlddatabank.myadapters.MyTopicAdapter;
 import it.apperol.group.worlddatabank.myadapters.OfflineAdapter;
 import it.apperol.group.worlddatabank.myobjects.PlotObj;
-import it.apperol.group.worlddatabank.mythreads.FetchData;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -354,8 +341,6 @@ public class PlotActivity extends AppCompatActivity {
             legendEntries[i] = entry;
 
         }
-
-        //legend.setCustom(legendEntries);     //Customizzare la legenda con legendEntries
 
         Description description = new Description();       //Descrizione da aggiungere sul grafico
         if(WelcomeFragment.count == 2) {
