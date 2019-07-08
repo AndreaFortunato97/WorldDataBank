@@ -21,8 +21,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import it.apperol.group.worlddatabank.MainActivity;
-import it.apperol.group.worlddatabank.OfflineFragment;
+import it.apperol.group.worlddatabank.myactivities.MainActivity;
+import it.apperol.group.worlddatabank.myfragments.OfflineFragment;
 import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.itemlist.OfflineDataItem;
 import it.apperol.group.worlddatabank.myactivities.PlotActivity;

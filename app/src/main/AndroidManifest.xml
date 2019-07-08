@@ -25,16 +25,16 @@
             android:label=""
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".myactivities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".myactivities.MainActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="it.apperol.group.worlddatabank.MainActivity" />
+                android:value="it.apperol.group.worlddatabank.myactivities.MainActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".myactivities.MainActivity"
             android:label="@string/app_title"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">

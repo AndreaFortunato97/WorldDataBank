@@ -41,8 +41,7 @@
     <string name="loading">Caricamento…</string>
     <string name="menu_gallery">Galleria</string>
     <string name="menu_home">Home</string>
-    <string name="menu_slideshow">Dati offline</string>
-    <string name="menu_tools">Impostazioni</string>
+    <string name="menu_offline">Dati offline</string>
     <string name="no_offline">Nessun dato offline trovato</string>
     <string name="offline">Non sei connesso ad internet…\nPuoi vedere solo i dati offline (precedentemente salvati)</string>
     <string name="permError"><![CDATA[---> Errore sui permessi <---]]></string>

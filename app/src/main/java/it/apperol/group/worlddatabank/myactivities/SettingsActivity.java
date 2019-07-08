@@ -1,6 +1,5 @@
-package it.apperol.group.worlddatabank;
+package it.apperol.group.worlddatabank.myactivities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -8,6 +7,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -16,6 +17,10 @@ import androidx.preference.PreferenceManager;
 import com.mahfa.dnswitch.DayNightSwitch;
 
 import java.util.Locale;
+
+import it.apperol.group.worlddatabank.R;
+import it.apperol.group.worlddatabank.myactivities.MainActivity;
+import it.apperol.group.worlddatabank.myfragments.WelcomeFragment;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -45,6 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.settings, new SettingsFragment())
                 .commit();
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -75,6 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
 
                 dayNightSwitch.setIsNight(!dayNightSwitch.isNight());
+
                 return true;
             }
             return false;
@@ -96,6 +103,7 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     setLang(newValue.toString());
+                    refreshLang();
                     return true;
                 }
             });
@@ -109,6 +117,16 @@ public class SettingsActivity extends AppCompatActivity {
             config.locale = locale;
             getResources().updateConfiguration(config,this.getResources().getDisplayMetrics());
 
+        }
+
+        private void refreshLang() {
+            /*Fragment frg = getActivity().getSupportFragmentManager().findFragmentById(R.id.settings);
+            final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            ft.detach(frg);
+            ft.attach(frg);
+            ft.commit();*/
+            getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.settings, new SettingsFragment()).commit();
+            getActivity().setTitle(getResources().getString(R.string.title_activity_settings));
         }
     }
 }

@@ -42,8 +42,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import it.apperol.group.worlddatabank.R;
-import it.apperol.group.worlddatabank.SaveShareDialog;
-import it.apperol.group.worlddatabank.WelcomeFragment;
+import it.apperol.group.worlddatabank.mydialogs.SaveShareDialog;
+import it.apperol.group.worlddatabank.myfragments.WelcomeFragment;
 import it.apperol.group.worlddatabank.myadapters.MyCountryAdapter;
 import it.apperol.group.worlddatabank.myadapters.MyIndicatorAdapter;
 import it.apperol.group.worlddatabank.myadapters.MyTopicAdapter;

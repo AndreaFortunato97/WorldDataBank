@@ -1,4 +1,4 @@
-package it.apperol.group.worlddatabank;
+package it.apperol.group.worlddatabank.myfragments;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +27,8 @@ import com.google.android.material.navigation.NavigationView;
 import java.io.File;
 import java.util.ArrayList;
 
+import it.apperol.group.worlddatabank.myactivities.MainActivity;
+import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.myactivities.FullImageActivity;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -145,6 +147,7 @@ public class GalleryFragment extends Fragment {
                         .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
+                                getActivity().setTitle(getResources().getString(R.string.app_title));
                                 NavigationView navigationView = getActivity().findViewById(R.id.nav_view);
                                 navigationView.getMenu().getItem(0).setChecked(true);
 
@@ -154,6 +157,7 @@ public class GalleryFragment extends Fragment {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
                                 getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
+                                getActivity().setTitle(getResources().getString(R.string.app_title));
                                 NavigationView navigationView = getActivity().findViewById(R.id.nav_view);
                                 navigationView.getMenu().getItem(0).setChecked(true);
 

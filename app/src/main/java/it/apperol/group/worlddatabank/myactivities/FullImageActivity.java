@@ -16,9 +16,9 @@ public class FullImageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            setTheme(R.style.AppThemeDark);
+            setTheme(R.style.MainAppThemeDark);
         } else {
-            setTheme(R.style.AppTheme);
+            setTheme(R.style.MainAppTheme);
         }
 
         super.onCreate(savedInstanceState);

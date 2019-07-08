@@ -1,4 +1,4 @@
-package it.apperol.group.worlddatabank;
+package it.apperol.group.worlddatabank.mydialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.DialogFragment;
+
+import it.apperol.group.worlddatabank.R;
 
 public class InfoDialog extends DialogFragment {
     @NonNull

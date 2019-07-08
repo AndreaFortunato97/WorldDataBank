@@ -1,4 +1,4 @@
-package it.apperol.group.worlddatabank;
+package it.apperol.group.worlddatabank.myfragments;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -26,6 +26,7 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.Objects;
 
+import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.myactivities.CountryActivity;
 import it.apperol.group.worlddatabank.myactivities.TopicActivity;
 import it.apperol.group.worlddatabank.myviews.MyTextView;

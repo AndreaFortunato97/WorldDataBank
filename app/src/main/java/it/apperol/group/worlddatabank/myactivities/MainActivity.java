@@ -1,4 +1,4 @@
-package it.apperol.group.worlddatabank;
+package it.apperol.group.worlddatabank.myactivities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +37,12 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.Locale;
 
+import it.apperol.group.worlddatabank.mydialogs.InfoDialog;
+import it.apperol.group.worlddatabank.R;
+import it.apperol.group.worlddatabank.myfragments.GalleryFragment;
+import it.apperol.group.worlddatabank.myfragments.OfflineFragment;
+import it.apperol.group.worlddatabank.myfragments.WelcomeFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -70,6 +76,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new WelcomeFragment()).commit();
+        setTitle(getResources().getString(R.string.app_title));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -123,6 +130,7 @@ public class MainActivity extends AppCompatActivity
             if(!(f instanceof WelcomeFragment)) {
                 navigationView.getMenu().getItem(0).setChecked(true);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
+                setTitle(getResources().getString(R.string.app_title));
             } else {
                 if (doubleBackPressed) {
                     finish();
@@ -174,11 +182,14 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home && !(navigationView.getMenu().getItem(0).isChecked())) {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
+            setTitle(getResources().getString(R.string.app_title));
         } else if (id == R.id.nav_gallery && !(navigationView.getMenu().getItem(1).isChecked())) {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new GalleryFragment()).commit();
+            setTitle(getResources().getString(R.string.menu_gallery));
         } else if (id == R.id.nav_offline && !(navigationView.getMenu().getItem(2).isChecked())) {
             WelcomeFragment.count = 2;
             getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new OfflineFragment()).commit();
+            setTitle(getResources().getString(R.string.menu_offline));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

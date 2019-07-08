@@ -17,9 +17,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import it.apperol.group.worlddatabank.MainActivity;
+import it.apperol.group.worlddatabank.myactivities.MainActivity;
 import it.apperol.group.worlddatabank.R;
-import it.apperol.group.worlddatabank.WelcomeFragment;
+import it.apperol.group.worlddatabank.myfragments.WelcomeFragment;
 import it.apperol.group.worlddatabank.myactivities.CountryActivity;
 import it.apperol.group.worlddatabank.myactivities.IndicatorActivity;
 import it.apperol.group.worlddatabank.myactivities.ProgressActivity;

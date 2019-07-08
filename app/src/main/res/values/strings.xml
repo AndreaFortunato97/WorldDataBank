@@ -15,8 +15,7 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Offline data</string>
-    <string name="menu_tools">Settings</string>
+    <string name="menu_offline">Offline data</string>
 
     <!-- Preferences -->
     <string name="choose_info"><![CDATA[(click here for info)\nBy choosing \'Country —> Argument —> Indicator\', you can request a specific indicator starting from the country of interest\n(e.g. Italy —> Economy —> GDP)\n\nBy choosing \'Argument —> Indicator —> Country\', you can request a specific indicator starting from the argument of interest and ending with the country\n(e.g. Economy -> GDP -> Italy)]]></string>

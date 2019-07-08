@@ -40,7 +40,7 @@
             app:summaryOn="The app is in 'Dark mode'"
             app:title="Enable Dark Mode" />-->
 
-        <it.apperol.group.worlddatabank.DayNightSwitchPreference
+        <it.apperol.group.worlddatabank.myviews.DayNightSwitchPreference
             android:key="day_night"
             android:widgetLayout="@layout/daynight_switch"
             android:title="@string/enable_dark_mode"

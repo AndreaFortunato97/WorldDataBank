@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.apperol.group.worlddatabank.R;
-import it.apperol.group.worlddatabank.WelcomeFragment;
+import it.apperol.group.worlddatabank.myfragments.WelcomeFragment;
 import it.apperol.group.worlddatabank.itemlist.MyIndicatorItem;
 import it.apperol.group.worlddatabank.myactivities.CountryActivity;
 import it.apperol.group.worlddatabank.myactivities.IndicatorActivity;

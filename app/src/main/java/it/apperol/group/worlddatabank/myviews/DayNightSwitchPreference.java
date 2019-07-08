@@ -1,4 +1,4 @@
-package it.apperol.group.worlddatabank;
+package it.apperol.group.worlddatabank.myviews;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import androidx.preference.PreferenceViewHolder;
 
 import com.mahfa.dnswitch.DayNightSwitch;
 import com.mahfa.dnswitch.DayNightSwitchAnimListener;
+
+import it.apperol.group.worlddatabank.R;
 
 public class DayNightSwitchPreference extends Preference {
     public DayNightSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {

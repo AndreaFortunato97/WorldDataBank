@@ -1,4 +1,4 @@
-package it.apperol.group.worlddatabank;
+package it.apperol.group.worlddatabank.myfragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.itemlist.OfflineDataItem;
 import it.apperol.group.worlddatabank.myadapters.OfflineAdapter;
 import it.apperol.group.worlddatabank.myviews.MyRecyclerView;
