@@ -123,8 +123,6 @@ public class SettingsActivity extends AppCompatActivity {
                     if (old_del_after_time_value != null && !old_del_after_time_value.equals(newValue)) {
                         SharedPreferences prefs = getActivity().getSharedPreferences("it.apperol.group.worlddatabank_preferences", MODE_PRIVATE);
                         prefs.edit().putLong("time", System.currentTimeMillis()).apply();
-
-                        Toast.makeText(getContext(), "Cambiato!", Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 }
