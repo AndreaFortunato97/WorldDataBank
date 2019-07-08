@@ -9,4 +9,20 @@
         <item>en</item>
         <item>it</item>
     </string-array>
+
+    <string-array name="delete_entries">
+        <item>@string/one_day</item>
+        <item>@string/three_days</item>
+        <item>@string/seven_days</item>
+        <item>@string/one_month</item>
+        <item>@string/never</item>
+    </string-array>
+
+    <string-array name="delete_values">
+        <item>1d</item>
+        <item>3d</item>
+        <item>7d</item>
+        <item>30d</item>
+        <item>never</item>
+    </string-array>
 </resources>

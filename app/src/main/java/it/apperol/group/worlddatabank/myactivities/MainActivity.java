@@ -2,10 +2,13 @@ package it.apperol.group.worlddatabank.myactivities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +38,7 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import it.apperol.group.worlddatabank.mydialogs.InfoDialog;
@@ -42,6 +46,9 @@ import it.apperol.group.worlddatabank.R;
 import it.apperol.group.worlddatabank.myfragments.GalleryFragment;
 import it.apperol.group.worlddatabank.myfragments.OfflineFragment;
 import it.apperol.group.worlddatabank.myfragments.WelcomeFragment;
+
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,6 +58,11 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
 
     public static String language;
+    private String del_every;
+    private Long pref_time;
+
+    private ArrayList permissions = new ArrayList();
+    private ArrayList permissionsToRequest;
 
     @Override
     public Resources.Theme getTheme() {
@@ -95,6 +107,15 @@ public class MainActivity extends AppCompatActivity
         }
 
         setLang();
+
+        SharedPreferences prefs = getSharedPreferences("it.apperol.group.worlddatabank_preferences", MODE_PRIVATE);
+        prefs.edit().putString("del_after_time", PreferenceManager.getDefaultSharedPreferences(this).getString("del_after_time", "never")).apply();
+
+        del_every = PreferenceManager.getDefaultSharedPreferences(this).getString("del_after_time", "never");
+        pref_time = PreferenceManager.getDefaultSharedPreferences(this).getLong("time", System.currentTimeMillis());
+
+        delEvery();
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -229,5 +250,84 @@ public class MainActivity extends AppCompatActivity
             }
         }
         tmpFolderToDelete.delete();
+    }
+
+    private void delEvery() {
+        if(hasAllPermissions() && !del_every.equals("never")) {
+            switch(del_every)
+            {
+                case "1d":
+                    if((pref_time + Long.parseLong("86400000")) <= System.currentTimeMillis()) {
+                        delAllFilesInFilesDir();
+                    }
+                    break;
+                case "3d":
+                    if((pref_time + Long.parseLong("259200000")) <= System.currentTimeMillis()) {
+                        delAllFilesInFilesDir();
+                    }
+                    break;
+                case "7d":
+                    if((pref_time + Long.parseLong("604800000")) <= System.currentTimeMillis()) {
+                        delAllFilesInFilesDir();
+                    }
+                    break;
+                case "30d":
+                    if((pref_time + Long.parseLong("2592000000")) <= System.currentTimeMillis()) {
+                        delAllFilesInFilesDir();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void delAllFilesInFilesDir() {
+        File path = getFilesDir();
+        Integer numberOfFiles;
+        if(path.exists()) {
+            File[] filesInFilesDir = path.listFiles();
+            if(filesInFilesDir != null) {
+                numberOfFiles = filesInFilesDir.length;
+                if(numberOfFiles != 0) {
+                    for(int i = 0; i < filesInFilesDir.length; i++) {
+                        filesInFilesDir[i].delete();
+                    }
+                    Toast.makeText(this, String.format(getResources().getString(R.string.deleted_offline_data), numberOfFiles), Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+    private Boolean hasAllPermissions() {
+        permissions.add(WRITE_EXTERNAL_STORAGE);
+        permissions.add(READ_EXTERNAL_STORAGE);
+
+        permissionsToRequest = findUnAskedPermissions(permissions);
+
+        if(permissionsToRequest.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private ArrayList findUnAskedPermissions(ArrayList<String> wanted) {
+        ArrayList result = new ArrayList();
+
+        for (String perm : wanted) {
+            if (!hasPermission(perm)) {
+                result.add(perm);
+            }
+        }
+        return result;
+    }
+
+    private boolean hasPermission(String permission) {
+        Boolean hasMarshmallow = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+        if (hasMarshmallow) {
+            return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
+        }
+        return true;
     }
 }

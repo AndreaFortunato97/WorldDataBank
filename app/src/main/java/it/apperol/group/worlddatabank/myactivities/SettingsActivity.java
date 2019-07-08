@@ -3,6 +3,7 @@ package it.apperol.group.worlddatabank.myactivities;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,7 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
-        private ListPreference lang;
+        private ListPreference lang, del_after_time;
         private Preference day_night;
         private DayNightSwitch dayNightSwitch;
 
@@ -94,9 +95,17 @@ public class SettingsActivity extends AppCompatActivity {
 
             lang = findPreference("language");
             day_night = findPreference("day_night");
+            del_after_time = findPreference("del_after_time");
+
+            final String old_del_after_time_value;
 
             if (lang.getValue() == null) {
                 lang.setValueIndex(1);
+            }
+
+            old_del_after_time_value = del_after_time.getValue();
+            if(old_del_after_time_value == null) {
+                del_after_time.setValueIndex(4);
             }
 
             lang.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -104,6 +113,19 @@ public class SettingsActivity extends AppCompatActivity {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     setLang(newValue.toString());
                     refreshLang();
+                    return true;
+                }
+            });
+
+            del_after_time.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if (old_del_after_time_value != null && !old_del_after_time_value.equals(newValue)) {
+                        SharedPreferences prefs = getActivity().getSharedPreferences("it.apperol.group.worlddatabank_preferences", MODE_PRIVATE);
+                        prefs.edit().putLong("time", System.currentTimeMillis()).apply();
+
+                        Toast.makeText(getContext(), "Cambiato!", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
             });

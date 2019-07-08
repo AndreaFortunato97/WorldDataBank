@@ -18,19 +18,11 @@
     <string name="cancel">Annulla</string>
     <string name="dark_mode">Tema chiaro/scuro</string>
     <string name="def_lang">Lingua predefinita</string>
-    <string name="del_after">Cancella tutte le statistiche salvate dopo</string>
-    <string name="del_stat">Cancella ora tutte le statistiche salvate</string>
-    <string name="del_stat_now">Cliccando qui cancellerai tutte le statistiche che hai scaricato fino ad ora</string>
     <string name="language">Lingua</string>
-    <string name="never">Mai</string>
-    <string name="one_day">1 giorno</string>
-    <string name="one_month">1 mese</string>
     <string name="save_graph">Salva il grafico nella galleria</string>
     <string name="save_share">Cosa desideri fare?</string>
-    <string name="seven_days">7 giorni</string>
     <string name="share_graph">Condividi il grafico con Whatsapp</string>
     <string name="storage">Memoria</string>
-    <string name="three_days">3 giorni</string>
     <string name="title_activity_main">World Bank Open Data</string>
     <string name="choose_country">Scegli un paese</string>
     <string name="choose_indicator">Scegli un indicatore</string>
@@ -62,10 +54,10 @@
     <string name="app_info">Info app</string>
     <string name="credits">Quest\'app e\' stata creata come progetto finale per l\'esame universitario \'Mobile Programming\'.\n\nAutori:\n\t\t• Fortunato Andrea\n\t\t• Malavasi Alessio\n\t\t• Visconti Vincenzo\n\t\t• Zaia Gino\n"</string>
     <string name="fetch_country_url">http://api.worldbank.org/v2/country/</string>
-    <string name="indicator_id">ID indicatore: %s</string>
-    <string name="indicator">Indicatore: </string>
+    <string name="indicator_id">ID indicatore:\u0020%s</string>
+    <string name="indicator">Indicatore:\u0020</string>
     <string name="no_data">Nessun dato</string>
-    <string name="of_country"> del paese </string>
+    <string name="of_country">\u0020del paese\u0020</string>
     <string name="data_saved">Dati del grafico salvati</string>
     <string name="chart_saved">Grafico salvato in galleria</string>
     <string name="delete">Cancella</string>
@@ -73,9 +65,16 @@
     <string name="chart_for">Questo è il grafico di \'</string>
     <string name="of_country_apostrophe">\' del paese \'</string>
     <string name="share_with">Condividi con</string>
-    <string name="no_whatsapp">Whatsapp not installato!</string>
+    <string name="no_whatsapp">Whatsapp non installato!</string>
     <string name="fetch_topic_url">http://api.worldbank.org/v2/topic/?format=json</string>
     <string name="refresh">Aggiorna</string>
     <string name="no_images">Nessun immagine trovata</string>
-    <string name="defValue">Non impostata</string>
+    <string name="del_after">Memoria</string>
+    <string name="def_del_after">Cancella tutte le statistiche salvate ogni</string>
+    <string name="one_day">1 giorno</string>
+    <string name="three_days">3 giorni</string>
+    <string name="seven_days">7 giorni</string>
+    <string name="one_month">30 giorni</string>
+    <string name="never">Mai</string>
+    <string name="deleted_offline_data">Rimossi con successo %d file precedentemente salvati</string>
 </resources>

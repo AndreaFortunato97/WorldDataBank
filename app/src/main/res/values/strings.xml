@@ -25,14 +25,6 @@
     <string name="def_lang">Default language</string>
     <string name="dark_mode">Light/Dark theme</string>
     <string name="storage">Storage</string>
-    <string name="del_after">Delete stored statistics after</string>
-    <string name="one_day">1 day</string>
-    <string name="three_days">3 days</string>
-    <string name="seven_days">7 days</string>
-    <string name="one_month">1 month</string>
-    <string name="never">Never</string>
-    <string name="del_stat">Delete all stored statistics now</string>
-    <string name="del_stat_now">By clicking here you will delete all statistics you downloaded</string>
     <string name="save_share">What do you want to do?</string>
     <string name="save_graph">Save chart to Gallery</string>
     <string name="share_graph">Share chart on Whatsapp</string>
@@ -64,10 +56,10 @@
     <string name="app_info">App info</string>
     <string name="credits">This app was created as a final project for the university exam \'Mobile Programming\'.\n\nAuthors:\n\t\t• Fortunato Andrea\n\t\t• Malavasi Alessio\n\t\t• Visconti Vincenzo\n\t\t• Zaia Gino\n"</string>
     <string name="fetch_country_url">http://api.worldbank.org/v2/country/</string>
-    <string name="indicator_id">Indicator ID: %s</string>
-    <string name="indicator">Indicator:</string>
+    <string name="indicator_id">Indicator ID:\u0020%s</string>
+    <string name="indicator">Indicator:\u0020</string>
     <string name="no_data">No Data</string>
-    <string name="of_country"> of country </string>
+    <string name="of_country">\u0020of country\u0020</string>
     <string name="data_saved">Chart data saved successfully</string>
     <string name="chart_saved">Chart saved to gallery</string>
     <string name="delete">Delete</string>
@@ -79,5 +71,12 @@
     <string name="fetch_topic_url">http://api.worldbank.org/v2/topic/?format=json</string>
     <string name="refresh">Refresh</string>
     <string name="no_images">No downloaded images found</string>
-    <string name="defValue">Noooot set</string>
+    <string name="del_after">Storage</string>
+    <string name="def_del_after">Delete stored statistics every</string>
+    <string name="one_day">1 day</string>
+    <string name="three_days">3 days</string>
+    <string name="seven_days">7 days</string>
+    <string name="one_month">30 days</string>
+    <string name="never">Never</string>
+    <string name="deleted_offline_data">Successfully deleted %d stored statistics</string>
 </resources>

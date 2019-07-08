@@ -23,12 +23,11 @@
 
         <ListPreference
             app:key="language"
-            app:defaultValue="english"
+            app:defaultValue="italian"
             app:entries="@array/languages_entries"
             app:entryValues="@array/languages_values"
             app:title="@string/def_lang"
-            app:useSimpleSummaryProvider="true"
-            android:defaultValue="@string/defValue"/>
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
@@ -45,6 +44,18 @@
             android:widgetLayout="@layout/daynight_switch"
             android:title="@string/enable_dark_mode"
             android:summary="@string/tap_to_switch"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/del_after">
+
+        <ListPreference
+            app:key="del_after_time"
+            app:defaultValue="english"
+            app:entries="@array/delete_entries"
+            app:entryValues="@array/delete_values"
+            app:title="@string/def_del_after"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
