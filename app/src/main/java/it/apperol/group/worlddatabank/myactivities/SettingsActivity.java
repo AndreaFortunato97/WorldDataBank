@@ -120,11 +120,6 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         private void refreshLang() {
-            /*Fragment frg = getActivity().getSupportFragmentManager().findFragmentById(R.id.settings);
-            final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-            ft.detach(frg);
-            ft.attach(frg);
-            ft.commit();*/
             getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.settings, new SettingsFragment()).commit();
             getActivity().setTitle(getResources().getString(R.string.title_activity_settings));
         }
