@@ -56,13 +56,13 @@ public class GalleryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        askPermissions();
+        askPermissions(); // Chiedi i permessi di lettura/scrittura
 
         gridView = (GridView) getActivity().findViewById(R.id.image_grid);
 
-        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/" + "ChartGallery"+"/");
+        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/" + "ChartGallery" + "/");
 
-        if (!folder.exists())
+        if (!folder.exists()) // Se la cartella NON esiste oppure non contiene files, mostra un messaggio
         {
             getActivity().findViewById(R.id.image_grid).setVisibility(View.INVISIBLE);
             getActivity().findViewById(R.id.no_images).setVisibility(View.VISIBLE);
@@ -70,7 +70,7 @@ public class GalleryFragment extends Fragment {
             if((folder.listFiles() == null) || (folder.listFiles().length == 0)) {
                 getActivity().findViewById(R.id.image_grid).setVisibility(View.INVISIBLE);
                 getActivity().findViewById(R.id.no_images).setVisibility(View.VISIBLE);
-            } else {
+            } else { // Se la cartella esiste e contiene files, aggiungili tutti alla GridView
                 file = new File(String.valueOf(folder));
                 list = imageReader(file);
 
@@ -80,7 +80,7 @@ public class GalleryFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
                     {
-                        openActivity(i);
+                        openActivity(i); // Apri l'activity FullImageActivity con la posizione (i) dell'immagine selezionata
                     }
                 });
             }
@@ -123,14 +123,13 @@ public class GalleryFragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+        if (grantResults[0] == PackageManager.PERMISSION_DENIED) { // Se l'utente rifiuta i permessi, richiedili... :)
 
             if (shouldShowRequestPermissionRationale(permissions[0])) {
                 Toast.makeText(getContext(), R.string.grantPerm, Toast.LENGTH_LONG).show();
                 requestPermissions((String[]) permissionsToRequest.toArray(new String[permissionsToRequest.size()]), 777);
 
-            } else {
-
+            } else { // Se l'utente rifiuta PERMANENTEMENTE i permessi, chiedigli di garantirli dalle impostazioni del telefono
                 new AlertDialog.Builder(getContext())
                         .setTitle(R.string.permError)
                         .setMessage(R.string.permDenied)
@@ -190,15 +189,10 @@ public class GalleryFragment extends Fragment {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
 
-            View convertView = null;
+            View convertView = getLayoutInflater().inflate(R.layout.image_preview,viewGroup,false);
+            ImageView myImage = (ImageView) convertView.findViewById(R.id.myImagePreview);
+            myImage.setImageURI(Uri.parse(list.get(i).toString()));
 
-            if (convertView == null)
-            {
-                convertView = getLayoutInflater().inflate(R.layout.image_preview,viewGroup,false);
-                ImageView myImage = (ImageView) convertView.findViewById(R.id.myImagePreview);
-                myImage.setImageURI(Uri.parse(list.get(i).toString()));
-
-            }
             return convertView;
         }
     }
@@ -222,7 +216,7 @@ public class GalleryFragment extends Fragment {
                 }
             }
         }
-        return b;
+        return b; // Ritorna una lista contenente tutte le immagini
     }
 
     private void openActivity(int i) {

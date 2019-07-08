@@ -26,13 +26,13 @@ public class InfoDialog extends DialogFragment {
                         dialog.dismiss();
                     }
                 });
-        return builder.create();
+        return builder.create(); // Creazione 'InfoDialog'
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) { // Se il tema è SCURO, imposto BIANCO (textColorDark) come colore del testo del bottone 'Ok' (PositiveButton)
             ((AlertDialog) getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.textColorDark));
         }
     }

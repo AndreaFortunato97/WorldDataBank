@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
     private ArrayList permissionsToRequest;
 
     @Override
-    public Resources.Theme getTheme() {
+    public Resources.Theme getTheme() { // Override del 'getTheme' da parte dei fragments (NoActionBar)
         Resources.Theme theme = super.getTheme();
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             theme.applyStyle(R.style.MainAppThemeDark, true);
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) { // Tema principale (con ActionBar)
             setTheme(R.style.AppThemeDark);
         } else {
             setTheme(R.style.AppTheme);
@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity
         mainActivityContext = this.getApplicationContext();
 
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new WelcomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new WelcomeFragment()).commit(); // Inserimento WelcomeFragment
         setTitle(getResources().getString(R.string.app_title));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar); // ActionBar superiore
 
-        navigationView = findViewById(R.id.nav_view);
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+        navigationView = findViewById(R.id.nav_view); // Menù laterale
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) { // Imposto il tema per la NavigationView
             navigationView.setBackgroundColor(getColor(R.color.backgroundDark));
             int colorInt = getResources().getColor(R.color.textColorDark);
             ColorStateList csl = ColorStateList.valueOf(colorInt);
@@ -106,16 +106,15 @@ public class MainActivity extends AppCompatActivity
             navigationView.setItemTextColor(csl);
         }
 
-        setLang();
+        setLang(); // Imposto la lingua dell'app
 
         SharedPreferences prefs = getSharedPreferences("it.apperol.group.worlddatabank_preferences", MODE_PRIVATE);
-        prefs.edit().putString("del_after_time", PreferenceManager.getDefaultSharedPreferences(this).getString("del_after_time", "never")).apply();
+        prefs.edit().putString("del_after_time", PreferenceManager.getDefaultSharedPreferences(this).getString("del_after_time", "never")).apply(); // Imposto 'never' come default
 
         del_every = PreferenceManager.getDefaultSharedPreferences(this).getString("del_after_time", "never");
         pref_time = PreferenceManager.getDefaultSharedPreferences(this).getLong("time", System.currentTimeMillis());
 
-        delEvery();
-
+        delEvery(); // Controllo periodico cancellazione files scaricati
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -128,9 +127,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+        drawer.addDrawerListener(toggle); // Creazione menù laterale
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.setNavigationItemSelectedListener(this); // OnClickListener dei bottoni nel menù laterale appena creato
 
         navigationView.getMenu().getItem(0).setChecked(true);
 
@@ -138,21 +138,21 @@ public class MainActivity extends AppCompatActivity
 
     private void openInfoDialog() {
         InfoDialog infoDialog = new InfoDialog();
-        infoDialog.show(getSupportFragmentManager(), "InfoDialog");
+        infoDialog.show(getSupportFragmentManager(), "InfoDialog"); // Apertura 'InfoDialog' nel fragment corrente
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.START); // Se c'è il menù laterale aperto, chiudilo
         } else {
             Fragment f = getSupportFragmentManager().findFragmentById(R.id.content_frame);
-            if(!(f instanceof WelcomeFragment)) {
+            if(!(f instanceof WelcomeFragment)) { // Se l'utente non è nel WelcomeFragment, torna a quest'ultimo
                 navigationView.getMenu().getItem(0).setChecked(true);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
                 setTitle(getResources().getString(R.string.app_title));
-            } else {
+            } else { // Se l'utente è nel WelcomeFragment e preme due volte indietro entro 2 secondi, esci dall'applicazione
                 if (doubleBackPressed) {
                     finish();
                     return;
@@ -171,18 +171,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu); // Aggiungo il tasto 'Impostazioni' in alto a destra (...)
         int positionOfMenuItem = 0;
 
         MenuItem item = menu.getItem(positionOfMenuItem);
         SpannableString s = new SpannableString(getResources().getString(R.string.action_settings));
 
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
+            s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0); // Scritta bianca
         } else {
-            s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, s.length(), 0);
+            s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, s.length(), 0); // Scritta nera
         }
-        item.setTitle(s);
+        item.setTitle(s); // Imposto il colore della scritta 'Impostazioni' (in base al tema)
         return true;
     }
 
@@ -192,15 +192,16 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(settingsIntent);
+            startActivity(settingsIntent); // Se l'utente clicca il tasto 'Impostazioni' apro l'activity 'SettingsActivity'
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) { // Quando l'utente clicca un tasto nella NavigationView
         int id = item.getItemId();
 
+        // Se l'utente clicca un tasto E NON si trova già in quel fragment, cambia fragment con quello cliccato
         if (id == R.id.nav_home && !(navigationView.getMenu().getItem(0).isChecked())) {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out).replace(R.id.content_frame, new WelcomeFragment()).commit();
             setTitle(getResources().getString(R.string.app_title));
@@ -214,10 +215,9 @@ public class MainActivity extends AppCompatActivity
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.START); // Chiudi menù laterale a sinistra
 
-        // 'false' se non voglio che rimanga selezionata l'opzione nel menu'
-        return true;
+        return true; // Seleziono il tasto cliccato nel menù laterale
     }
 
     @Override
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity
         File tmpFolderToDelete = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/.tmpChart/");
 
         if(tmpFolderToDelete.exists()) {
-            deleteTempFolderRecursive(tmpFolderToDelete);
+            deleteTempFolderRecursive(tmpFolderToDelete); // Se la cartella '.tmpChart' esiste, eliminala insieme al suo contenuto
         }
 
         setLang();
@@ -235,13 +235,13 @@ public class MainActivity extends AppCompatActivity
     private void setLang() {
         language = PreferenceManager.getDefaultSharedPreferences(this).getString("language", "it");
         Locale locale = new Locale(language);
-        Locale.setDefault(locale);
+        Locale.setDefault(locale); // Imposto la lingua scelta
         Configuration config = new Configuration();
         config.locale = locale;
-        getResources().updateConfiguration(config,this.getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config,this.getResources().getDisplayMetrics()); // Aggiorno l'app con la nuova lingua
     }
 
-    private void deleteTempFolderRecursive(File tmpFolderToDelete) {
+    private void deleteTempFolderRecursive(File tmpFolderToDelete) { // Funzione che elimina una cartella e tutto il suo contenuto (incluse eventuali sottocartelle)
         if (tmpFolderToDelete.isDirectory()) {
             if(tmpFolderToDelete.listFiles() != null) {
                 for (File filesInDir : tmpFolderToDelete.listFiles()) {
@@ -253,7 +253,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void delEvery() {
-        if(hasAllPermissions() && !del_every.equals("never")) {
+        if(hasAllPermissions() && !del_every.equals("never")) { // Se l'utente ha i permessi E NON ha selezionato 'Never' dalle impostazioni
+            // Cancella tutti gli eventuali file scaricati dopo l'unità di tempo selezionata
             switch(del_every)
             {
                 case "1d":
@@ -283,7 +284,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void delAllFilesInFilesDir() {
-        File path = getFilesDir();
+        File path = getFilesDir(); // Directory 'files' standard, non visibile dall'utente
         Integer numberOfFiles;
         if(path.exists()) {
             File[] filesInFilesDir = path.listFiles();
@@ -291,7 +292,7 @@ public class MainActivity extends AppCompatActivity
                 numberOfFiles = filesInFilesDir.length;
                 if(numberOfFiles != 0) {
                     for(int i = 0; i < filesInFilesDir.length; i++) {
-                        filesInFilesDir[i].delete();
+                        filesInFilesDir[i].delete(); // Cancella tutti i files
                     }
                     Toast.makeText(this, String.format(getResources().getString(R.string.deleted_offline_data), numberOfFiles), Toast.LENGTH_LONG).show();
                 }
@@ -320,7 +321,7 @@ public class MainActivity extends AppCompatActivity
                 result.add(perm);
             }
         }
-        return result;
+        return result; // Array di permessi NON accettati
     }
 
     private boolean hasPermission(String permission) {

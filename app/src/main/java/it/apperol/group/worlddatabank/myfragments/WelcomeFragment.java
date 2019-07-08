@@ -61,6 +61,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
         myTvTitle.setText(String.format("%s App", getResources().getString(R.string.app_title)));
 
+        // Coloro la scritta World Bank Open Data
         myTvTitle.measure(0,0);
         Shader textShader = new LinearGradient(0, (float)myTvTitle.getMeasuredHeight()/2, (float)myTvTitle.getMeasuredWidth(), (float)myTvTitle.getMeasuredHeight()/2,
                 new int[]{
@@ -78,7 +79,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         myTvChooseInfo.setOnClickListener(this);
         mbRefreshConnection.setOnClickListener(this);
 
-        if(!isConnected()) {
+        if(!isConnected()) { // Se l'utente NON è connesso ad internet, disabilita le opzioni per andare avanti e mostra un messaggio di avvertimento con un tasto per ricontrollare la connessione
             myTvChoose.setVisibility(View.INVISIBLE);
             myTvChooseInfo.setVisibility(View.INVISIBLE);
             mbCoArIn.setEnabled(false);
@@ -92,7 +93,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         mbRefreshConnection.setOnClickListener(this);
     }
 
-    private void underlineChoose() {
+    private void underlineChoose() { // Imposta il colore celeste per la sottostringa 'click here for info'
         Spannable spannable = new SpannableString(getString(R.string.choose_info));
         iStart = 1;
         iEnd = iStart + 19;
@@ -110,12 +111,12 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.mbRefreshConnection:
+            case R.id.mbRefreshConnection: // Ricontrolla la conessione
                 if(isConnected()) {
                     getActivity().recreate();
                 }
                 break;
-            case R.id.mbCoArIn:
+            case R.id.mbCoArIn: // Se l'utente è connesso prosegui verso la CountryActivity, altrimenti ricrea l'activity corrente mostrando il messaggio di 'Non connessione'
                 if(isConnected()) {
                     count = 0;
                     Intent countryIntent = new Intent(getActivity(), CountryActivity.class);
@@ -125,7 +126,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
                 }
 
                 break;
-            case R.id.mbArInCo:
+            case R.id.mbArInCo: // Se l'utente è connesso prosegui verso la TopicActivity, altrimenti ricrea l'activity corrente mostrando il messaggio di 'Non connessione'
                 if(isConnected()) {
                     count = 1;
                     Intent topicIntent = new Intent(getActivity(), TopicActivity.class);
@@ -134,7 +135,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
                     getActivity().recreate();
                 }
                 break;
-            case R.id.myTvChooseInfo:
+            case R.id.myTvChooseInfo: // Riduce/espande, con animazione, la TextView che mostra le informazioni su come procedere
 
                 if(isTextViewClicked){
                     ObjectAnimator animation = ObjectAnimator.ofInt(
@@ -156,7 +157,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private Boolean isConnected() {
+    private Boolean isConnected() { // Ritorna 'true' se connesso ad internet tramite Wifi e/o Connessione dati, 'false' altrimenti
         ConnectivityManager connectivityManager = (ConnectivityManager) Objects.requireNonNull(getActivity()).getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
