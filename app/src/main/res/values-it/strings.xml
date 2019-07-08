@@ -70,7 +70,7 @@
     <string name="refresh">Aggiorna</string>
     <string name="no_images">Nessun immagine trovata</string>
     <string name="del_after">Memoria</string>
-    <string name="def_del_after">Cancella tutte le statistiche salvate ogni</string>
+    <string name="def_del_after">Cancella tutte i dati salvati ogni</string>
     <string name="one_day">1 giorno</string>
     <string name="three_days">3 giorni</string>
     <string name="seven_days">7 giorni</string>
